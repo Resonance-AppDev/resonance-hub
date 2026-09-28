@@ -28,6 +28,16 @@ export type ResonanceAppKey =
 export type AppStatus = "live" | "beta" | "pilot" | "coming_soon";
 
 const HUB_URL = "https://reson8.life";
+export const DATANEST_PUBLIC_URL = "https://datanest-supository.github.io/DataNest";
+export const DATANEST_APP_URLS = {
+  epublisher: `${DATANEST_PUBLIC_URL}/apps/epublisher/`,
+  creative_studio: `${DATANEST_PUBLIC_URL}/apps/creative-studio/`,
+  sync_vision: `${DATANEST_PUBLIC_URL}/apps/syncvision/`,
+  career_compass: `${DATANEST_PUBLIC_URL}/apps/career-compass/`,
+  lyricsync_studio: `${DATANEST_PUBLIC_URL}/apps/lyricsync-studio/`,
+  scene_song_spark: `${DATANEST_PUBLIC_URL}/apps/scene-song-spark/`,
+  sovereign_forge: `${DATANEST_PUBLIC_URL}/apps/sovereign-forge/`,
+} as const;
 const PRICING_PATH = `${HUB_URL}/pricing`;
 const MANAGE_BILLING_PATH = `${HUB_URL}/account/subscriptions`;
 
@@ -93,7 +103,8 @@ export const APP_REGISTRY: Record<ResonanceAppKey, AppRegistryEntry> = {
   epublisher: entry({
     key: "epublisher",
     label: "Resonance ePublisher",
-    url: "https://epublisher.reson8.life",
+    url: DATANEST_APP_URLS.epublisher,
+    fallbackUrl: "https://epublisher.reson8.life",
     status: "live",
     accentColor: "#8B5CF6",
     entitlementAppKey: "epublisher",
@@ -103,7 +114,8 @@ export const APP_REGISTRY: Record<ResonanceAppKey, AppRegistryEntry> = {
   creative_studio: entry({
     key: "creative_studio",
     label: "Resonance Creative Studio",
-    url: "https://creative.reson8.life",
+    url: DATANEST_APP_URLS.creative_studio,
+    fallbackUrl: "https://creative.reson8.life",
     status: "live",
     accentColor: "#EC4899",
     entitlementAppKey: "creative_studio",
@@ -113,7 +125,8 @@ export const APP_REGISTRY: Record<ResonanceAppKey, AppRegistryEntry> = {
   sync_vision: entry({
     key: "sync_vision",
     label: "Resonance Sync Vision",
-    url: "https://sync.reson8.life",
+    url: DATANEST_APP_URLS.sync_vision,
+    fallbackUrl: "https://sync.reson8.life",
     status: "live",
     accentColor: "#06B6D4",
     entitlementAppKey: "sync_vision",
@@ -176,9 +189,41 @@ export const ECOSYSTEM_REGISTRY: Record<string, EcosystemEntry> = {
   career_compass: {
     key: "career_compass",
     label: "Career Compass",
-    url: "https://www.career-compass.org",
+    url: DATANEST_APP_URLS.career_compass,
     status: "pilot",
     tagline: "Discover your career path with a rewards-based pilot.",
+    includedInSuite: false,
+  },
+  datanest: {
+    key: "datanest",
+    label: "Resonance DataNest",
+    url: `${DATANEST_PUBLIC_URL}/?view=products&product=ronsas`,
+    status: "live",
+    tagline: "Governed RONSAS runtime and operational product surface.",
+    includedInSuite: false,
+  },
+  lyricsync_studio: {
+    key: "lyricsync_studio",
+    label: "LyricSync Studio",
+    url: DATANEST_APP_URLS.lyricsync_studio,
+    status: "live",
+    tagline: "Synchronise lyrics, timing, and music-video production context inside DataNest.",
+    includedInSuite: false,
+  },
+  scene_song_spark: {
+    key: "scene_song_spark",
+    label: "Scene Song Spark",
+    url: DATANEST_APP_URLS.scene_song_spark,
+    status: "live",
+    tagline: "Turn songs and scenes into governed creative prompts inside DataNest.",
+    includedInSuite: false,
+  },
+  sovereign_forge: {
+    key: "sovereign_forge",
+    label: "SovereignForge",
+    url: DATANEST_APP_URLS.sovereign_forge,
+    status: "live",
+    tagline: "Build and govern sovereign application work inside DataNest.",
     includedInSuite: false,
   },
   myify: {
