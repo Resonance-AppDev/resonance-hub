@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { subscribeNewsletter } from "@/lib/newsletter.functions";
 import { getRequestOrigin } from "@/lib/origin.functions";
+import { APP_REGISTRY, ECOSYSTEM_REGISTRY } from "@/lib/app-registry";
 
 const CANONICAL_ORIGIN = "https://reson8.life";
 import resonanceLogo from "@/assets/resonance-logo.png";
@@ -92,11 +93,11 @@ export const Route = createFileRoute("/")({
                 url: `${origin}/`,
                 logo: `${origin}/og-logo.png`,
                 sameAs: [
-                  "https://epublisher.reson8.life",
-                  "https://creative.reson8.life",
-                  "https://sync.reson8.life",
+                  APP_REGISTRY.epublisher.url,
+                  APP_REGISTRY.creative_studio.url,
+                  APP_REGISTRY.sync_vision.url,
                   "https://www.resonance-podcast.com",
-                  "https://www.career-compass.org",
+                  ECOSYSTEM_REGISTRY.career_compass.url,
                 ],
               },
               {
@@ -110,7 +111,7 @@ export const Route = createFileRoute("/")({
                 name: "Resonance ePublisher",
                 applicationCategory: "MultimediaApplication",
                 operatingSystem: "Web",
-                url: "https://epublisher.reson8.life",
+                url: APP_REGISTRY.epublisher.url,
                 offers: { "@type": "Offer", price: "0", priceCurrency: "ZAR", availability: "https://schema.org/InStock", description: "Free promotional access" },
               },
               {
@@ -118,7 +119,7 @@ export const Route = createFileRoute("/")({
                 name: "Creative Studio",
                 applicationCategory: "DesignApplication",
                 operatingSystem: "Web",
-                url: "https://creative.reson8.life",
+                url: APP_REGISTRY.creative_studio.url,
                 offers: { "@type": "Offer", price: "0", priceCurrency: "ZAR", availability: "https://schema.org/InStock", description: "Free promotional access" },
               },
               {
@@ -126,7 +127,7 @@ export const Route = createFileRoute("/")({
                 name: "Sync Vision",
                 applicationCategory: "MultimediaApplication",
                 operatingSystem: "Web",
-                url: "https://sync.reson8.life",
+                url: APP_REGISTRY.sync_vision.url,
                 offers: { "@type": "Offer", price: "0", priceCurrency: "ZAR", availability: "https://schema.org/InStock", description: "Free promotional access" },
               },
               {
@@ -184,10 +185,10 @@ const apps: App[] = [
     name: "Resonance ePublisher",
     tagline:
       "Turn topics, manuscripts, PDFs, and research into polished audiovisual eBooks.",
-    domain: "epublisher.reson8.life",
-    href: "https://epublisher.reson8.life",
+    domain: "DataNest · ePublisher",
+    href: APP_REGISTRY.epublisher.url,
     localPort: 3101,
-    subscribeHref: "https://epublisher.reson8.life",
+    subscribeHref: APP_REGISTRY.epublisher.url,
     priceLabel: "Free promotion",
     priceNote: "Full access during the costing study · no payment required",
 
@@ -204,10 +205,10 @@ const apps: App[] = [
     name: "Creative Studio",
     tagline:
       "Design posters, ads, product visuals, brochures, and campaign media instantly.",
-    domain: "creative.reson8.life",
-    href: "https://creative.reson8.life",
+    domain: "DataNest · Creative Studio",
+    href: APP_REGISTRY.creative_studio.url,
     localPort: 3201,
-    subscribeHref: "https://creative.reson8.life",
+    subscribeHref: APP_REGISTRY.creative_studio.url,
     priceLabel: "Free promotion",
     priceNote: "Full access during the costing study · no payment required",
     logo: logoCreativeStudio,
@@ -223,10 +224,10 @@ const apps: App[] = [
     name: "Sync Vision",
     tagline:
       "Turn songs into cinematic storyboards, character concepts, captions, and video-generation prompts.",
-    domain: "sync.reson8.life",
-    href: "https://sync.reson8.life",
+    domain: "DataNest · Sync Vision",
+    href: APP_REGISTRY.sync_vision.url,
     localPort: 3301,
-    subscribeHref: "https://sync.reson8.life",
+    subscribeHref: APP_REGISTRY.sync_vision.url,
     priceLabel: "Free promotion",
     priceNote: "Full access during the costing study · no payment required",
     logo: logoSyncVision,
@@ -260,8 +261,8 @@ const apps: App[] = [
     name: "Career Compass",
     tagline:
       "Help learners and schools discover career paths, skills, bursaries, and role-fit insights.",
-    domain: "career-compass.org",
-    href: "https://www.career-compass.org",
+    domain: "DataNest · Career Compass",
+    href: ECOSYSTEM_REGISTRY.career_compass.url,
     subscribeHref: "https://www.career-compass.org/#how",
     priceLabel: "Free pilot",
     priceNote: "Free promotional access while usage and delivery costs are measured",
@@ -279,9 +280,9 @@ const apps: App[] = [
     tagline:
       "Audit channels, improve thumbnails, titles, content strategy, and growth planning.",
     domain: "youtube.reson8.life",
-    href: "https://youtube.reson8.life",
+    href: APP_REGISTRY.youtube_optimizer.url,
     localPort: 3401,
-    subscribeHref: "https://youtube.reson8.life",
+    subscribeHref: APP_REGISTRY.youtube_optimizer.url,
     priceLabel: "Free promotion",
     priceNote: "Full access during the costing study · no payment required",
     logo: logoYouTubeOptimizer,
@@ -669,7 +670,7 @@ function Index() {
               AI tools for South African creators, publishers, schools, and small businesses.
             </h1>
             <p className="text-base md:text-lg text-white/75 leading-[1.65] text-pretty max-w-[58ch] mb-6">
-              Create eBooks, posters, campaigns, music-video storyboards, YouTube audits, and career reports from one Resonance hub.
+              Discover the Resonance ecosystem here, then launch migrated RONSAS apps from their governed DataNest runtime.
             </p>
             <p className="text-sm text-white/65 leading-relaxed max-w-[58ch] mb-4">
               Open every Resonance product at no charge during the promotion, then help us learn from real usage so future pricing reflects actual operating cost.
@@ -850,28 +851,28 @@ function Index() {
               {
                 title: "Publish an eBook",
                 body: "Turn manuscripts, PDFs, and stories into polished audiovisual books.",
-                href: "https://epublisher.reson8.life",
+                href: APP_REGISTRY.epublisher.url,
     localPort: 3101,
                 cta: "Open ePublisher",
               },
               {
                 title: "Create campaign visuals",
                 body: "Generate posters, ads, brochures, videos, and product campaigns.",
-                href: "https://creative.reson8.life",
+                href: APP_REGISTRY.creative_studio.url,
     localPort: 3201,
                 cta: "Open Creative Studio",
               },
               {
                 title: "Build a music-video concept",
                 body: "Build music-video storyboards, character concepts, and AI-ready scene prompts.",
-                href: "https://sync.reson8.life",
+                href: APP_REGISTRY.sync_vision.url,
     localPort: 3301,
                 cta: "Open Sync Vision",
               },
               {
                 title: "Explore a career path",
                 body: "Discover career paths, skills, bursaries, and role-fit insights.",
-                href: "https://www.career-compass.org",
+                href: ECOSYSTEM_REGISTRY.career_compass.url,
                 cta: "Open Career Compass",
               },
               {
@@ -912,7 +913,7 @@ function Index() {
               <h2 className="font-display text-3xl md:text-5xl font-bold tracking-[-0.025em]">Choose a Resonance tool</h2>
             </div>
             <p className="text-white/60 max-w-md text-sm leading-relaxed">
-              Each app is independently deployed. Full access is temporarily free across the suite while usage and provider costs are measured.
+              Migrated RONSAS apps now launch from DataNest. YouTube Optimizer remains on its current server runtime until its DataNest server move is complete.
             </p>
           </div>
 
@@ -1318,13 +1319,13 @@ function Index() {
             <a href="https://www.resonance-podcast.com/episodes" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Podcast
             </a>
-            <a href="https://epublisher.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a href=APP_REGISTRY.epublisher.url target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               ePublisher
             </a>
-            <a href="https://creative.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a href=APP_REGISTRY.creative_studio.url target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Studio
             </a>
-            <a href="https://sync.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a href=APP_REGISTRY.sync_vision.url target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               SyncVision
             </a>
           </div>
@@ -1355,9 +1356,9 @@ type UpdateItem = {
 // changes required to add / edit / reorder cards.
 const FALLBACK_UPDATES: UpdateItem[] = [
   { app: "Reson8 Hub", status: "Free Promotion", tone: "pilot", change: "New billing and checkout are paused while the ecosystem measures real usage and provider cost for sustainable future pricing.", date: "Sep 2026", href: "/pricing", cta: "Promotion details" },
-  { app: "Resonance ePublisher", status: "Free Promotion", tone: "pilot", change: "Full ePublisher access is included during the promotion while generation and publishing costs are measured.", date: "Sep 2026", href: "https://epublisher.reson8.life", cta: "Open free" },
-  { app: "Creative Studio", status: "Free Promotion", tone: "pilot", change: "Creative Studio generation access is temporarily free while image and media provider costs are measured.", date: "Sep 2026", href: "https://creative.reson8.life", cta: "Open free" },
-  { app: "Sync Vision", status: "Free Promotion", tone: "pilot", change: "Storyboard, lipsync, rendering, and export access are included while video-provider costs are measured.", date: "Sep 2026", href: "https://sync.reson8.life", cta: "Open free" },
+  { app: "Resonance ePublisher", status: "Free Promotion", tone: "pilot", change: "Full ePublisher access is included during the promotion while generation and publishing costs are measured.", date: "Sep 2026", href: APP_REGISTRY.epublisher.url, cta: "Open free" },
+  { app: "Creative Studio", status: "Free Promotion", tone: "pilot", change: "Creative Studio generation access is temporarily free while image and media provider costs are measured.", date: "Sep 2026", href: APP_REGISTRY.creative_studio.url, cta: "Open free" },
+  { app: "Sync Vision", status: "Free Promotion", tone: "pilot", change: "Storyboard, lipsync, rendering, and export access are included while video-provider costs are measured.", date: "Sep 2026", href: APP_REGISTRY.sync_vision.url, cta: "Open free" },
   { app: "YouTube Optimizer", status: "Free Promotion", tone: "pilot", change: "Audits, thumbnail generation, and optimizer tools are temporarily free while usage and AI costs are measured.", date: "Sep 2026", href: "https://youtube.reson8.life", cta: "Open free" },
   { app: "Career Compass", status: "Free Pilot", tone: "pilot", change: "Free pilot open to schools and learners while delivery, support, and report-generation costs are measured.", date: "Feb 2026", href: "https://www.career-compass.org/#how", cta: "Join pilot" },
   { app: "The Resonance Podcast", status: "Live", tone: "live", change: "New season live — free episodes, media kits, and shop. Never a subscription.", date: "Jun 2026", href: "https://www.resonance-podcast.com/episodes", cta: "Listen" },
