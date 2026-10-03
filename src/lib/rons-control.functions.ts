@@ -148,8 +148,8 @@ export const getRonsControlState = createServerFn({ method: "GET" })
       promotionSites: [
         { name: "Resonance Hub", url: "https://www.reson8.life", email: "" },
         { name: "Resonance Online", url: "https://epublisher.reson8.life", email: "" },
-        { name: "Creative Studio", url: "https://creative.reson8.life", email: "" },
-        { name: "Sync Vision", url: "https://sync.reson8.life", email: "" },
+        { name: "Resonance Creator Studio", url: "https://creative.reson8.life", email: "" },
+        { name: "Resonance Media Sync", url: "https://sync.reson8.life", email: "" },
         {
           name: "Resonance Naturals",
           url: "https://www.resonance-products.com/products",

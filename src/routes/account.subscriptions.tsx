@@ -438,7 +438,7 @@ function SubscriptionsPage() {
       case "creator_pass":
         return {
           name: "Creator Pass",
-          description: "Ecosystem pass — includes ePublisher, Creative Studio, and YouTube Optimizer.",
+          description: "Ecosystem pass — includes Resonance Publish, Resonance Creator Studio, and Resonance Creator Growth.",
           coveredApps: new Set<AppKey>(["epublisher", "creative_studio", "youtube_optimizer"]),
           coveredTierLabel: "Pro (via Creator Pass)",
         };

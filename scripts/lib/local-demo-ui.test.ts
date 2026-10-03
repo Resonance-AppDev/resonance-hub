@@ -15,10 +15,10 @@ describe("RONS local demo UI", () => {
   });
 
   test("local demo exposes the four locally hosted spoke ports", () => {
-    expect(root).toContain('["ePublisher", 3101]');
-    expect(root).toContain('["Creative Studio", 3201]');
-    expect(root).toContain('["Sync Vision", 3301]');
-    expect(root).toContain('["YouTube Optimizer", 3401]');
+    expect(root).toContain('["Resonance Publish", 3101]');
+    expect(root).toContain('["Resonance Creator Studio", 3201]');
+    expect(root).toContain('["Resonance Media Sync", 3301]');
+    expect(root).toContain('["Resonance Creator Growth", 3401]');
   });
   test("canonical public URLs remain authoritative in registry and metadata", () => {
     expect(registry).toContain('const HUB_URL = "https://reson8.life"');

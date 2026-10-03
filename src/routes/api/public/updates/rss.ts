@@ -171,7 +171,7 @@ function buildRss(
     "  <channel>",
     `    <title>${escapeXml(`Resonance — Latest Updates${titleSuffix}`)}</title>`,
     `    <link>${escapeXml(siteUrl)}</link>`,
-    "    <description>Release notes and status changes across the Resonance ecosystem: Hub, ePublisher, Creative Studio, Sync Vision, YouTube Optimizer, Career Compass, and the Resonance Podcast.</description>",
+    "    <description>Release notes and status changes across the Resonance ecosystem: Hub, Resonance Publish, Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Career Compass, and the Resonance Podcast.</description>",
     "    <language>en</language>",
     `    <lastBuildDate>${now}</lastBuildDate>`,
     `    <atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml" />`,

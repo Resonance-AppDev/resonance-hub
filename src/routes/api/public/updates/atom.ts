@@ -170,7 +170,7 @@ function buildAtom(
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<feed xmlns="http://www.w3.org/2005/Atom">',
     `  <title>${escapeXml(`Resonance — Latest Updates${titleSuffix}`)}</title>`,
-    "  <subtitle>Release notes and status changes across the Resonance ecosystem: Hub, ePublisher, Creative Studio, Sync Vision, YouTube Optimizer, Career Compass, and the Resonance Podcast.</subtitle>",
+    "  <subtitle>Release notes and status changes across the Resonance ecosystem: Hub, Resonance Publish, Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Career Compass, and the Resonance Podcast.</subtitle>",
     `  <link rel="self" type="application/atom+xml" href="${escapeXml(feedUrl)}" />`,
     `  <link rel="alternate" type="text/html" href="${escapeXml(siteUrl)}" />`,
     `  <id>${escapeXml(feedUrl)}</id>`,

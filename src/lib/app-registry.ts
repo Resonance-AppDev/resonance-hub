@@ -92,7 +92,7 @@ function entry(
 export const APP_REGISTRY: Record<ResonanceAppKey, AppRegistryEntry> = {
   epublisher: entry({
     key: "epublisher",
-    label: "Resonance ePublisher",
+    label: "Resonance Publish",
     url: "https://epublisher.reson8.life",
     status: "live",
     accentColor: "#8B5CF6",
@@ -102,7 +102,7 @@ export const APP_REGISTRY: Record<ResonanceAppKey, AppRegistryEntry> = {
   }),
   creative_studio: entry({
     key: "creative_studio",
-    label: "Resonance Creative Studio",
+    label: "Resonance Creator Studio",
     url: "https://creative.reson8.life",
     status: "live",
     accentColor: "#EC4899",
@@ -112,7 +112,7 @@ export const APP_REGISTRY: Record<ResonanceAppKey, AppRegistryEntry> = {
   }),
   sync_vision: entry({
     key: "sync_vision",
-    label: "Resonance Sync Vision",
+    label: "Resonance Media Sync",
     url: "https://sync.reson8.life",
     status: "live",
     accentColor: "#06B6D4",
@@ -122,7 +122,7 @@ export const APP_REGISTRY: Record<ResonanceAppKey, AppRegistryEntry> = {
   }),
   youtube_optimizer: entry({
     key: "youtube_optimizer",
-    label: "YouTube Optimizer",
+    label: "Resonance Creator Growth",
     url: "https://youtube.reson8.life",
     status: "live",
     accentColor: "#F97316",

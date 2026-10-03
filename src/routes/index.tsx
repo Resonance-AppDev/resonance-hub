@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
         {
           name: "description",
           content:
-            "Explore Resonance AI tools for eBooks, design, music-video storyboards, YouTube growth, and career guidance. Full product access is temporarily free while Resonance measures real usage and establishes sustainable pricing.",
+            "Explore Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Resonance Publish, and Career Compass. Full product access is temporarily free while Resonance measures usage and establishes sustainable pricing.",
         },
         {
           property: "og:title",
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
         {
           property: "og:description",
           content:
-            "Explore Resonance AI tools for eBooks, design, music-video storyboards, YouTube growth, and career guidance. Full product access is temporarily free while Resonance measures real usage and establishes sustainable pricing.",
+            "Explore Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Resonance Publish, and Career Compass. Full product access is temporarily free while Resonance measures usage and establishes sustainable pricing.",
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: `${origin}/` },
@@ -58,7 +58,7 @@ export const Route = createFileRoute("/")({
         {
           name: "twitter:description",
           content:
-            "Explore Resonance AI tools for eBooks, design, music-video storyboards, YouTube growth, and career guidance. Full product access is temporarily free while Resonance measures real usage and establishes sustainable pricing.",
+            "Explore Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Resonance Publish, and Career Compass. Full product access is temporarily free while Resonance measures usage and establishes sustainable pricing.",
         },
         { name: "twitter:image", content: `${origin}/og-logo.png` },
         { name: "twitter:image:alt", content: "The Resonance logo" },
@@ -107,7 +107,7 @@ export const Route = createFileRoute("/")({
               },
               {
                 "@type": "SoftwareApplication",
-                name: "Resonance ePublisher",
+                name: "Resonance Publish",
                 applicationCategory: "MultimediaApplication",
                 operatingSystem: "Web",
                 url: "https://epublisher.reson8.life",
@@ -115,7 +115,7 @@ export const Route = createFileRoute("/")({
               },
               {
                 "@type": "SoftwareApplication",
-                name: "Creative Studio",
+                name: "Resonance Creator Studio",
                 applicationCategory: "DesignApplication",
                 operatingSystem: "Web",
                 url: "https://creative.reson8.life",
@@ -123,7 +123,7 @@ export const Route = createFileRoute("/")({
               },
               {
                 "@type": "SoftwareApplication",
-                name: "Sync Vision",
+                name: "Resonance Media Sync",
                 applicationCategory: "MultimediaApplication",
                 operatingSystem: "Web",
                 url: "https://sync.reson8.life",
@@ -131,7 +131,7 @@ export const Route = createFileRoute("/")({
               },
               {
                 "@type": "SoftwareApplication",
-                name: "YouTube Optimizer",
+                name: "Resonance Creator Growth",
                 applicationCategory: "BusinessApplication",
                 operatingSystem: "Web",
                 url: "https://youtube.reson8.life",
@@ -141,14 +141,14 @@ export const Route = createFileRoute("/")({
                 "@type": "FAQPage",
                 mainEntity: [
                   ["Is billing active during the promotion?", "No. New billing and checkout are paused while Resonance provides full promotional access and measures real usage to determine sustainable pricing."],
-                  ["Can I use Resonance tools for free?", "Yes. During the current promotion, Resonance ePublisher, Creative Studio, Sync Vision, YouTube Optimizer, Career Compass, and ecosystem media are available without payment. Sign-in may still be required so usage can be measured."],
+                  ["Can I use Resonance tools for free?", "Yes. During the current promotion, Resonance Publish, Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Career Compass, and ecosystem media are available without payment. Sign-in may still be required so usage can be measured."],
                   ["Why is sign-in still required?", "Sign-in keeps projects and usage attributable during the free-access promotion so Resonance can measure demand and provider costs before setting future pricing."],
                   ["When will pricing return?", "Pricing will be introduced only after Resonance has enough real usage and cost data to set sustainable rates. No future price is implied by the promotion."],
                   ["Will I be charged during the promotion?", "No new checkout is available during the promotion. Promotional access does not require a new payment."],
                   ["Can schools use Career Compass?", "Yes — schools can join the free pilot."],
 
-                  ["Does Sync Vision generate final videos or AI-ready storyboards?", "Sync Vision produces AI-ready music-video storyboards and scene prompts."],
-                  ["Can Creative Studio create ads and product visuals?", "Yes — posters, brochures, social ads, product mockups, and short marketing videos."],
+                  ["Does Resonance Media Sync generate final videos or AI-ready storyboards?", "Resonance Media Sync produces AI-ready music-video storyboards and scene prompts."],
+                  ["Can Resonance Creator Studio create ads and product visuals?", "Yes — posters, brochures, social ads, product mockups, and short marketing videos."],
                 ].map(([q, a]) => ({
                   "@type": "Question",
                   name: q,
@@ -181,7 +181,7 @@ type App = {
 
 const apps: App[] = [
   {
-    name: "Resonance ePublisher",
+    name: "Resonance Publish",
     tagline:
       "Turn topics, manuscripts, PDFs, and research into polished audiovisual eBooks.",
     domain: "epublisher.reson8.life",
@@ -201,7 +201,7 @@ const apps: App[] = [
     },
   },
   {
-    name: "Creative Studio",
+    name: "Resonance Creator Studio",
     tagline:
       "Design posters, ads, product visuals, brochures, and campaign media instantly.",
     domain: "creative.reson8.life",
@@ -220,7 +220,7 @@ const apps: App[] = [
     },
   },
   {
-    name: "Sync Vision",
+    name: "Resonance Media Sync",
     tagline:
       "Turn songs into cinematic storyboards, character concepts, captions, and video-generation prompts.",
     domain: "sync.reson8.life",
@@ -275,7 +275,7 @@ const apps: App[] = [
     },
   },
   {
-    name: "YouTube Optimizer",
+    name: "Resonance Creator Growth",
     tagline:
       "Audit channels, improve thumbnails, titles, content strategy, and growth planning.",
     domain: "youtube.reson8.life",
@@ -852,21 +852,21 @@ function Index() {
                 body: "Turn manuscripts, PDFs, and stories into polished audiovisual books.",
                 href: "https://epublisher.reson8.life",
     localPort: 3101,
-                cta: "Open ePublisher",
+                cta: "Open Resonance Publish",
               },
               {
                 title: "Create campaign visuals",
                 body: "Generate posters, ads, brochures, videos, and product campaigns.",
                 href: "https://creative.reson8.life",
     localPort: 3201,
-                cta: "Open Creative Studio",
+                cta: "Open Resonance Creator Studio",
               },
               {
                 title: "Build a music-video concept",
                 body: "Build music-video storyboards, character concepts, and AI-ready scene prompts.",
                 href: "https://sync.reson8.life",
     localPort: 3301,
-                cta: "Open Sync Vision",
+                cta: "Open Resonance Media Sync",
               },
               {
                 title: "Explore a career path",
@@ -879,7 +879,7 @@ function Index() {
                 body: "Audit thumbnails, titles, content strategy, and channel growth opportunities.",
                 href: "https://youtube.reson8.life",
                 localPort: 3401,
-                cta: "Open YouTube Optimizer",
+                cta: "Open Resonance Creator Growth",
               },
             ].map((p) => (
               <article
@@ -1319,13 +1319,13 @@ function Index() {
               Podcast
             </a>
             <a href="https://epublisher.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              ePublisher
+              Resonance Publish
             </a>
             <a href="https://creative.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Studio
+              Resonance Creator Studio
             </a>
             <a href="https://sync.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              SyncVision
+              Resonance Media Sync
             </a>
           </div>
 
@@ -1355,10 +1355,10 @@ type UpdateItem = {
 // changes required to add / edit / reorder cards.
 const FALLBACK_UPDATES: UpdateItem[] = [
   { app: "Reson8 Hub", status: "Free Promotion", tone: "pilot", change: "New billing and checkout are paused while the ecosystem measures real usage and provider cost for sustainable future pricing.", date: "Sep 2026", href: "/pricing", cta: "Promotion details" },
-  { app: "Resonance ePublisher", status: "Free Promotion", tone: "pilot", change: "Full ePublisher access is included during the promotion while generation and publishing costs are measured.", date: "Sep 2026", href: "https://epublisher.reson8.life", cta: "Open free" },
-  { app: "Creative Studio", status: "Free Promotion", tone: "pilot", change: "Creative Studio generation access is temporarily free while image and media provider costs are measured.", date: "Sep 2026", href: "https://creative.reson8.life", cta: "Open free" },
-  { app: "Sync Vision", status: "Free Promotion", tone: "pilot", change: "Storyboard, lipsync, rendering, and export access are included while video-provider costs are measured.", date: "Sep 2026", href: "https://sync.reson8.life", cta: "Open free" },
-  { app: "YouTube Optimizer", status: "Free Promotion", tone: "pilot", change: "Audits, thumbnail generation, and optimizer tools are temporarily free while usage and AI costs are measured.", date: "Sep 2026", href: "https://youtube.reson8.life", cta: "Open free" },
+  { app: "Resonance Publish", status: "Free Promotion", tone: "pilot", change: "Full Resonance Publish access is included during the promotion while generation and publishing costs are measured.", date: "Sep 2026", href: "https://epublisher.reson8.life", cta: "Open free" },
+  { app: "Resonance Creator Studio", status: "Free Promotion", tone: "pilot", change: "Resonance Creator Studio generation access is temporarily free while image and media provider costs are measured.", date: "Sep 2026", href: "https://creative.reson8.life", cta: "Open free" },
+  { app: "Resonance Media Sync", status: "Free Promotion", tone: "pilot", change: "Storyboard, lipsync, rendering, and export access are included while video-provider costs are measured.", date: "Sep 2026", href: "https://sync.reson8.life", cta: "Open free" },
+  { app: "Resonance Creator Growth", status: "Free Promotion", tone: "pilot", change: "Audits, thumbnail generation, and optimizer tools are temporarily free while usage and AI costs are measured.", date: "Sep 2026", href: "https://youtube.reson8.life", cta: "Open free" },
   { app: "Career Compass", status: "Free Pilot", tone: "pilot", change: "Free pilot open to schools and learners while delivery, support, and report-generation costs are measured.", date: "Feb 2026", href: "https://www.career-compass.org/#how", cta: "Join pilot" },
   { app: "The Resonance Podcast", status: "Live", tone: "live", change: "New season live — free episodes, media kits, and shop. Never a subscription.", date: "Jun 2026", href: "https://www.resonance-podcast.com/episodes", cta: "Listen" },
   { app: "Reson8 Governance", status: "New", tone: "new", change: "Resonance Constitutional Governance Framework v1.0 published — how we build, price, and evolve every app.", date: "May 2026", href: "/governance", cta: "Read RCGF" },

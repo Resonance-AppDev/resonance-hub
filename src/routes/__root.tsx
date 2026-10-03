@@ -143,7 +143,7 @@ function LocalDemoLauncher() {
   }, []);
   if (!host) return null;
   const apps = [
-    ["ePublisher", 3101], ["Creative Studio", 3201], ["Sync Vision", 3301], ["YouTube Optimizer", 3401],
+    ["Resonance Publish", 3101], ["Resonance Creator Studio", 3201], ["Resonance Media Sync", 3301], ["Resonance Creator Growth", 3401],
   ] as const;
   return (
     <aside className="fixed bottom-4 right-4 z-50 max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-background/95 p-3 shadow-xl backdrop-blur">
