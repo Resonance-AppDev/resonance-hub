@@ -130,7 +130,7 @@ export async function requireTierFromRequest(args: {
   }
 
   // 2. Validate the bearer token through the selected backend provider.
-  let userId: string | null = null;
+  let userId: string | null;
   try {
     userId = await resolveBearerUserId(accessToken);
   } catch {
