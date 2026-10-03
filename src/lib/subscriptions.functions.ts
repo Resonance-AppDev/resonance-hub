@@ -24,22 +24,40 @@ export type SubscriptionRow = {
 };
 
 export const APP_META: Record<AppKey, { label: string; accent: string; url: string }> = {
-  epublisher:        { label: "Resonance Publish",      accent: "#c026d3", url: "https://epublisher.reson8.life" },
-  creative_studio:   { label: "Resonance Creator Studio", accent: "#a855f7", url: "https://creative.reson8.life" },
-  sync_vision:       { label: "Resonance Media Sync",     accent: "#ec4899", url: "https://sync.reson8.life" },
-  youtube_optimizer: { label: "Resonance Creator Growth",         accent: "#06b6d4", url: "https://youtube.reson8.life" },
-  all_access:        { label: "All-Access Bundle",         accent: "#f59e0b", url: "/pricing" },
+  epublisher: {
+    label: "Resonance Publish",
+    accent: "#c026d3",
+    url: "https://epublisher.reson8.life",
+  },
+  creative_studio: {
+    label: "Resonance Creator Studio",
+    accent: "#a855f7",
+    url: "https://creative.reson8.life",
+  },
+  sync_vision: {
+    label: "Resonance Media Sync",
+    accent: "#ec4899",
+    url: "https://sync.reson8.life",
+  },
+  youtube_optimizer: {
+    label: "Resonance Creator Growth",
+    accent: "#06b6d4",
+    url: "https://youtube.reson8.life",
+  },
+  all_access: { label: "All-Access Bundle", accent: "#f59e0b", url: "/pricing" },
 };
 
 export const getMySubscriptions = createServerFn({ method: "GET" })
   .middleware([requireRonsAuth])
-  .handler(async ({ context }): Promise<{ subscriptions: SubscriptionRow[]; email: string | null }> => {
-    const request = getRequest();
-    const credential = request ? resolveRonsRequestCredential(request) : null;
-    if (!credential) throw new Error("Authenticated request credential unavailable");
-    const [subscriptions, email] = await Promise.all([
-      fetchSubscriptionDetails(credential, context.userId),
-      fetchBackendUserEmail(credential),
-    ]);
-    return { subscriptions: subscriptions as SubscriptionRow[], email };
-  });
+  .handler(
+    async ({ context }): Promise<{ subscriptions: SubscriptionRow[]; email: string | null }> => {
+      const request = getRequest();
+      const credential = request ? resolveRonsRequestCredential(request) : null;
+      if (!credential) throw new Error("Authenticated request credential unavailable");
+      const [subscriptions, email] = await Promise.all([
+        fetchSubscriptionDetails(credential, context.userId),
+        fetchBackendUserEmail(credential),
+      ]);
+      return { subscriptions: subscriptions as SubscriptionRow[], email };
+    },
+  );

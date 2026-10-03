@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
@@ -64,7 +64,9 @@ function useDebugEnabled(): [boolean, (next: boolean) => void] {
   useEffect(() => {
     const fn = () => setEnabled(debugEnabled());
     debugSubscribers.add(fn);
-    return () => { debugSubscribers.delete(fn); };
+    return () => {
+      debugSubscribers.delete(fn);
+    };
   }, []);
   return [enabled, setDebugEnabled];
 }
@@ -76,7 +78,6 @@ function log(event: string, detail: Record<string, unknown> = {}) {
   // route can show the last-known auth gate results for support triage.
   recordAuthGateEvent(event, level, detail);
   if (level === "info" && !debugEnabled()) return;
-  // eslint-disable-next-line no-console
   console[level](`[account/subscriptions] ${event}`, {
     ts: new Date().toISOString(),
     env: typeof window === "undefined" ? "ssr" : "browser",
@@ -98,11 +99,11 @@ function DebugToggle() {
       aria-pressed={enabled}
       title="Toggle verbose auth-gate logging in this tab"
     >
-      Debug auth: <span className={enabled ? "text-emerald-400" : ""}>{enabled ? "on" : "off"}</span>
+      Debug auth:{" "}
+      <span className={enabled ? "text-emerald-400" : ""}>{enabled ? "on" : "off"}</span>
     </button>
   );
 }
-
 
 /**
  * Client-side auth gate. Waits for Supabase to hydrate the session from
@@ -130,17 +131,21 @@ function SubscriptionsGate() {
   type ProbeState =
     | { state: "pending" }
     | { state: "resolved"; hasSubject: boolean; error: string | null; elapsedMs: number };
-  const diagnostics = useState(() => ({
+  const diagnosticsRef = useRef({
     sessionProbe: { state: "pending" } as ProbeState,
     userProbe: { state: "pending" } as ProbeState,
     lastAuthEvent: null as { event: string; hasSession: boolean; elapsedMs: number } | null,
     authEventCount: 0,
     userId: null as string | null,
-    mountedAt: typeof performance !== "undefined" ? performance.now() : Date.now(),
+    mountedAt: 0,
     analyticsEmitted: false,
-  }))[0];
+  });
 
   useEffect(() => {
+    const diagnostics = diagnosticsRef.current;
+    if (!diagnostics.mountedAt) {
+      diagnostics.mountedAt = typeof performance !== "undefined" ? performance.now() : Date.now();
+    }
     let cancelled = false;
     const mountedAt = diagnostics.mountedAt;
     log("gate_mounted");
@@ -224,9 +229,10 @@ function SubscriptionsGate() {
       window.clearTimeout(stuckTimer);
       sub.subscription.unsubscribe();
     };
-  }, [diagnostics]);
+  }, []);
 
   useEffect(() => {
+    const diagnostics = diagnosticsRef.current;
     if (status === "anon") {
       // Compute the single root cause for the redirect. Priority order:
       //   1. Unexpected error from getUser() (real failure — surface as warn)
@@ -279,7 +285,8 @@ function SubscriptionsGate() {
       if (!diagnostics.analyticsEmitted) {
         diagnostics.analyticsEmitted = true;
         const elapsedMs = Math.round(
-          (typeof performance !== "undefined" ? performance.now() : Date.now()) - diagnostics.mountedAt,
+          (typeof performance !== "undefined" ? performance.now() : Date.now()) -
+            diagnostics.mountedAt,
         );
         emitAuthGateAnalytics({
           decision: "redirect",
@@ -298,7 +305,8 @@ function SubscriptionsGate() {
       if (!diagnostics.analyticsEmitted) {
         diagnostics.analyticsEmitted = true;
         const elapsedMs = Math.round(
-          (typeof performance !== "undefined" ? performance.now() : Date.now()) - diagnostics.mountedAt,
+          (typeof performance !== "undefined" ? performance.now() : Date.now()) -
+            diagnostics.mountedAt,
         );
         emitAuthGateAnalytics({
           decision: "render",
@@ -315,8 +323,7 @@ function SubscriptionsGate() {
         });
       }
     }
-  }, [status, navigate, diagnostics]);
-
+  }, [status, navigate]);
 
   if (status === "checking") {
     return (
@@ -329,21 +336,35 @@ function SubscriptionsGate() {
   return FREE_PROMOTION_ACTIVE ? <PromotionSubscriptionsNotice /> : <SubscriptionsPage />;
 }
 
-
 function PromotionSubscriptionsNotice() {
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-4 py-20">
         <div className="rounded-3xl border border-primary/25 bg-card/60 p-8 text-center sm:p-12">
-          <p className="font-mono text-xs uppercase tracking-[0.24em] text-primary">{FREE_PROMOTION.shortLabel}</p>
-          <h1 className="mt-3 text-3xl font-bold sm:text-5xl">Subscriptions are not required during the promotion</h1>
+          <p className="font-mono text-xs uppercase tracking-[0.24em] text-primary">
+            {FREE_PROMOTION.shortLabel}
+          </p>
+          <h1 className="mt-3 text-3xl font-bold sm:text-5xl">
+            Subscriptions are not required during the promotion
+          </h1>
           <p className="mt-5 text-muted-foreground">{FREE_PROMOTION.description}</p>
           <p className="mt-3 text-sm text-muted-foreground">
-            Existing subscription records remain preserved for audit and support. New checkout and payment retry actions are disabled.
+            Existing subscription records remain preserved for audit and support. New checkout and
+            payment retry actions are disabled.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/" className="rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">Open Resonance Hub</Link>
-            <a href="/support" className="rounded-full border border-white/15 px-6 py-3 font-semibold">Support</a>
+            <Link
+              to="/"
+              className="rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground"
+            >
+              Open Resonance Hub
+            </Link>
+            <a
+              href="/support"
+              className="rounded-full border border-white/15 px-6 py-3 font-semibold"
+            >
+              Support
+            </a>
           </div>
         </div>
       </div>
@@ -355,9 +376,9 @@ const ALL_APPS: AppKey[] = ["epublisher", "creative_studio", "sync_vision", "you
 
 function statusBadge(status: SubscriptionRow["status"]) {
   const map: Record<SubscriptionRow["status"], string> = {
-    active:    "bg-emerald-500/15 text-emerald-300 border-emerald-500/40",
-    pending:   "bg-amber-500/15 text-amber-300 border-amber-500/40",
-    past_due:  "bg-red-500/15 text-red-300 border-red-500/40",
+    active: "bg-emerald-500/15 text-emerald-300 border-emerald-500/40",
+    pending: "bg-amber-500/15 text-amber-300 border-amber-500/40",
+    past_due: "bg-red-500/15 text-red-300 border-red-500/40",
     cancelled: "bg-zinc-500/15 text-zinc-300 border-zinc-500/40",
   };
   return map[status];
@@ -365,7 +386,11 @@ function statusBadge(status: SubscriptionRow["status"]) {
 
 function formatDate(iso: string | null) {
   if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" });
+  return new Date(iso).toLocaleDateString("en-ZA", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
 }
 
 function formatPrice(cents: number) {
@@ -438,7 +463,8 @@ function SubscriptionsPage() {
       case "creator_pass":
         return {
           name: "Creator Pass",
-          description: "Ecosystem pass — includes Resonance Publish, Resonance Creator Studio, and Resonance Creator Growth.",
+          description:
+            "Ecosystem pass — includes Resonance Publish, Resonance Creator Studio, and Resonance Creator Growth.",
           coveredApps: new Set<AppKey>(["epublisher", "creative_studio", "youtube_optimizer"]),
           coveredTierLabel: "Pro (via Creator Pass)",
         };
@@ -446,14 +472,24 @@ function SubscriptionsPage() {
         return {
           name: "Studio Pass",
           description: "Ecosystem pass — Pro-level access across every Resonance app.",
-          coveredApps: new Set<AppKey>(["epublisher", "creative_studio", "sync_vision", "youtube_optimizer"]),
+          coveredApps: new Set<AppKey>([
+            "epublisher",
+            "creative_studio",
+            "sync_vision",
+            "youtube_optimizer",
+          ]),
           coveredTierLabel: "Pro (via Studio Pass)",
         };
       case "all_access":
         return {
           name: "All-Access (legacy)",
           description: "Legacy ecosystem pass — Pro-level access across every Resonance app.",
-          coveredApps: new Set<AppKey>(["epublisher", "creative_studio", "sync_vision", "youtube_optimizer"]),
+          coveredApps: new Set<AppKey>([
+            "epublisher",
+            "creative_studio",
+            "sync_vision",
+            "youtube_optimizer",
+          ]),
           coveredTierLabel: "Pro (via All-Access)",
         };
       default:
@@ -466,7 +502,6 @@ function SubscriptionsPage() {
         };
     }
   })();
-
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -515,11 +550,12 @@ function SubscriptionsPage() {
                       ? `${bundleInfo.description} Renews ${formatDate(bundle?.current_period_end ?? null)}.`
                       : bundleInfo.description}
                   </p>
-
                 </div>
                 <div className="text-right">
                   {bundleActive ? (
-                    <span className={`inline-block rounded-full border px-3 py-1 text-xs ${statusBadge("active")}`}>
+                    <span
+                      className={`inline-block rounded-full border px-3 py-1 text-xs ${statusBadge("active")}`}
+                    >
                       Active · {formatPrice(bundle!.amount_cents)}/mo
                     </span>
                   ) : (
@@ -547,13 +583,15 @@ function SubscriptionsPage() {
                   // tier's pass get relabeled. Creator Pass excludes Sync
                   // Vision; that app must still show its own per-app sub.
                   const coveredByBundle = bundleActive && bundleInfo.coveredApps.has(app);
-                  const effectiveTier = coveredByBundle ? bundleInfo.coveredTierLabel : sub?.tier ?? "Free";
-                  const effectiveStatus: SubscriptionRow["status"] =
-                    coveredByBundle ? "active" : sub?.status ?? "pending";
+                  const effectiveTier = coveredByBundle
+                    ? bundleInfo.coveredTierLabel
+                    : (sub?.tier ?? "Free");
+                  const effectiveStatus: SubscriptionRow["status"] = coveredByBundle
+                    ? "active"
+                    : (sub?.status ?? "pending");
                   const renewal = coveredByBundle
                     ? bundle?.current_period_end
-                    : sub?.current_period_end ?? null;
-
+                    : (sub?.current_period_end ?? null);
 
                   return (
                     <div
@@ -563,7 +601,9 @@ function SubscriptionsPage() {
                       <div className="flex items-center gap-4 min-w-0">
                         <div
                           className="h-10 w-10 rounded-lg flex-shrink-0"
-                          style={{ background: `linear-gradient(135deg, ${meta.accent}, ${meta.accent}88)` }}
+                          style={{
+                            background: `linear-gradient(135deg, ${meta.accent}, ${meta.accent}88)`,
+                          }}
                         />
                         <div className="min-w-0">
                           <p className="font-medium truncate">{meta.label}</p>
@@ -573,12 +613,15 @@ function SubscriptionsPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-3 flex-shrink-0">
-                        <span className={`inline-block rounded-full border px-3 py-1 text-xs capitalize ${statusBadge(effectiveStatus)}`}>
+                        <span
+                          className={`inline-block rounded-full border px-3 py-1 text-xs capitalize ${statusBadge(effectiveStatus)}`}
+                        >
                           {effectiveStatus.replace("_", " ")}
                         </span>
                         {sub && !coveredByBundle ? (
                           <span className="text-xs text-muted-foreground font-mono">
-                            {formatPrice(sub.amount_cents)}/{sub.billing_cycle === "monthly" ? "mo" : "yr"}
+                            {formatPrice(sub.amount_cents)}/
+                            {sub.billing_cycle === "monthly" ? "mo" : "yr"}
                           </span>
                         ) : (
                           !coveredByBundle && (
@@ -615,23 +658,38 @@ function SubscriptionsPage() {
                     </thead>
                     <tbody>
                       {subs.map((s) => {
-                        const retryable = s.status === "pending" || s.status === "past_due" || s.status === "cancelled";
+                        const retryable =
+                          s.status === "pending" ||
+                          s.status === "past_due" ||
+                          s.status === "cancelled";
                         return (
-                        <tr key={`${s.app}-${s.updated_at}`} className="border-t border-border">
-                          <td className="px-4 py-3">{APP_META[s.app as AppKey]?.label ?? s.app}</td>
-                          <td className="px-4 py-3 capitalize">{s.tier}</td>
-                          <td className="px-4 py-3">
-                            <span className={`inline-block rounded border px-2 py-0.5 text-xs capitalize ${statusBadge(s.status)}`}>
-                              {s.status.replace("_", " ")}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 capitalize">{s.billing_cycle}</td>
-                          <td className="px-4 py-3 text-xs">{formatDate(s.current_period_end)}</td>
-                          <td className="px-4 py-3 text-right font-mono text-xs">{formatPrice(s.amount_cents)}</td>
-                          <td className="px-4 py-3 text-right">
-                            {retryable ? <RetryPaymentButton subscriptionId={s.id} /> : <span className="text-xs text-muted-foreground">—</span>}
-                          </td>
-                        </tr>
+                          <tr key={`${s.app}-${s.updated_at}`} className="border-t border-border">
+                            <td className="px-4 py-3">
+                              {APP_META[s.app as AppKey]?.label ?? s.app}
+                            </td>
+                            <td className="px-4 py-3 capitalize">{s.tier}</td>
+                            <td className="px-4 py-3">
+                              <span
+                                className={`inline-block rounded border px-2 py-0.5 text-xs capitalize ${statusBadge(s.status)}`}
+                              >
+                                {s.status.replace("_", " ")}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 capitalize">{s.billing_cycle}</td>
+                            <td className="px-4 py-3 text-xs">
+                              {formatDate(s.current_period_end)}
+                            </td>
+                            <td className="px-4 py-3 text-right font-mono text-xs">
+                              {formatPrice(s.amount_cents)}
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              {retryable ? (
+                                <RetryPaymentButton subscriptionId={s.id} />
+                              ) : (
+                                <span className="text-xs text-muted-foreground">—</span>
+                              )}
+                            </td>
+                          </tr>
                         );
                       })}
                     </tbody>
@@ -654,7 +712,6 @@ function SubscriptionsPage() {
           </>
         )}
 
-
         <footer className="mt-16 flex justify-end">
           <DebugToggle />
         </footer>
@@ -662,4 +719,3 @@ function SubscriptionsPage() {
     </div>
   );
 }
-

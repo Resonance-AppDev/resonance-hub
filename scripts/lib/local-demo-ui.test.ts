@@ -10,7 +10,7 @@ describe("RONS local demo UI", () => {
     expect(root).toContain("RONS Local Demo");
     expect(root).toContain("isPrivateDemoHost");
     expect(root).toContain('host.startsWith("192.168.")');
-    expect(root).toContain('`http://${host}:${port}`');
+    expect(root).toContain("`http://${host}:${port}`");
     expect(root).not.toContain("192.168.1.50");
   });
 

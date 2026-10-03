@@ -163,7 +163,6 @@ jobs:
           if-no-files-found: warn
           retention-days: 90
 
-
       # Cache Vite's transform cache. Restored across runs so unchanged
       # modules skip re-transformation. Safe: Vite invalidates entries
       # whose source or config hash changed.
@@ -259,10 +258,10 @@ jobs:
         run: bun run prebuild
 
       # Smoke test target resolution:
-       #   1. If `vars.SMOKE_BASE_URL` (repository/environment variable) is set, use it —
-       #      typically the deployed preview URL (e.g. https://id-preview--<id>.lovable.app
-       #      or https://project--<id>-dev.lovable.app).
-       #   2. Otherwise build locally and serve .output/server via wrangler dev on :8080.
+      #   1. If `vars.SMOKE_BASE_URL` (repository/environment variable) is set, use it —
+      #      typically the deployed preview URL (e.g. https://id-preview--<id>.lovable.app
+      #      or https://project--<id>-dev.lovable.app).
+      #   2. Otherwise build locally and serve .output/server via wrangler dev on :8080.
       - name: Resolve smoke test BASE_URL
         id: smoke_target
         env:
@@ -342,7 +341,6 @@ jobs:
       # over mode=[live, mock] so a regression under either configuration
       # fails CI independently, and keeps live-mode secret handling +
       # artifact upload isolated from mock-mode's no-secret path.
-
 
       # Lighthouse: performance ≥ 0.80, accessibility ≥ 0.90 (see lighthouserc.json).
       # Only runs when we have a locally served build — skipping for remote preview

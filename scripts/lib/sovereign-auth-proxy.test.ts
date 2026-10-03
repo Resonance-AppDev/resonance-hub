@@ -1,14 +1,27 @@
-import { afterEach, describe, expect, test } from "bun:test";
+import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { handleSovereignAuthProxy } from "../../src/lib/sovereign-auth-proxy.server";
 
 const savedEnabled = process.env.RONS_SOVEREIGN_PROXY_ENABLED;
 const savedGateway = process.env.RESONANCE_SOVEREIGN_GATEWAY_URL;
+const savedProductionCookie = process.env.RONS_PRODUCTION_AUTH_COOKIE;
+const savedProductionOrigin = process.env.RONS_PRODUCTION_ORIGIN;
+
+beforeEach(() => {
+  // Production cases enable these explicitly; developer machine settings must
+  // not make the local-origin fixtures fail or leak into subsequent suites.
+  delete process.env.RONS_PRODUCTION_AUTH_COOKIE;
+  delete process.env.RONS_PRODUCTION_ORIGIN;
+});
 
 afterEach(() => {
   if (savedEnabled === undefined) delete process.env.RONS_SOVEREIGN_PROXY_ENABLED;
   else process.env.RONS_SOVEREIGN_PROXY_ENABLED = savedEnabled;
   if (savedGateway === undefined) delete process.env.RESONANCE_SOVEREIGN_GATEWAY_URL;
   else process.env.RESONANCE_SOVEREIGN_GATEWAY_URL = savedGateway;
+  if (savedProductionCookie === undefined) delete process.env.RONS_PRODUCTION_AUTH_COOKIE;
+  else process.env.RONS_PRODUCTION_AUTH_COOKIE = savedProductionCookie;
+  if (savedProductionOrigin === undefined) delete process.env.RONS_PRODUCTION_ORIGIN;
+  else process.env.RONS_PRODUCTION_ORIGIN = savedProductionOrigin;
 });
 
 describe("sovereign auth same-origin proxy", () => {
@@ -24,10 +37,16 @@ describe("sovereign auth same-origin proxy", () => {
   test("captures sign-in bearer token in an httpOnly cookie and redacts it", async () => {
     process.env.RONS_SOVEREIGN_PROXY_ENABLED = "1";
     process.env.RESONANCE_SOVEREIGN_GATEWAY_URL = "http://127.0.0.1:58600";
-    const mockFetch = (async () => Response.json({
-      user: { id: "user-1", email: "test@example.invalid" },
-      session: { local: true, access_token: "a".repeat(64), token_type: "bearer", expires_in: 86400 },
-    })) as typeof fetch;
+    const mockFetch = (async () =>
+      Response.json({
+        user: { id: "user-1", email: "test@example.invalid" },
+        session: {
+          local: true,
+          access_token: "a".repeat(64),
+          token_type: "bearer",
+          expires_in: 86400,
+        },
+      })) as typeof fetch;
     const request = new Request("http://hub.local/api/sovereign/auth/sign-in", {
       method: "POST",
       headers: { "Content-Type": "application/json", Origin: "http://hub.local" },
@@ -39,7 +58,7 @@ describe("sovereign auth same-origin proxy", () => {
     expect(setCookie).toContain("rons_sovereign_session=");
     expect(setCookie).toContain("HttpOnly");
     expect(setCookie).toContain("SameSite=Strict");
-    const body = await response.json() as { session: Record<string, unknown> };
+    const body = (await response.json()) as { session: Record<string, unknown> };
     expect(body.session.access_token).toBeUndefined();
     expect(body.session.token_transport).toBe("httpOnly-cookie");
   });
@@ -57,20 +76,37 @@ describe("sovereign auth same-origin proxy", () => {
       forwardedAuth = headers.Authorization ?? "";
       exchangeHeader = headers["X-RONS-Exchange-Key"] ?? "";
       forwardedBody = String(init?.body ?? "");
-      return Response.json({ user: { id: subject, email: null }, session: { local: true, access_token: "l".repeat(64), token_type: "bearer", expires_in: 86400 } });
+      return Response.json({
+        user: { id: subject, email: null },
+        session: {
+          local: true,
+          access_token: "l".repeat(64),
+          token_type: "bearer",
+          expires_in: 86400,
+        },
+      });
     }) as typeof fetch;
-    const request = new Request("http://hub.local/api/sovereign/auth/exchange", { method: "POST", headers: { Origin: "http://hub.local", Authorization: "Bearer hosted-token-secret" } });
-    const response = await handleSovereignAuthProxy(request, "exchange", mockFetch, async (token) => {
-      expect(token).toBe("hosted-token-secret");
-      return subject;
-    }, async () => "x".repeat(64));
+    const request = new Request("http://hub.local/api/sovereign/auth/exchange", {
+      method: "POST",
+      headers: { Origin: "http://hub.local", Authorization: "Bearer hosted-token-secret" },
+    });
+    const response = await handleSovereignAuthProxy(
+      request,
+      "exchange",
+      mockFetch,
+      async (token) => {
+        expect(token).toBe("hosted-token-secret");
+        return subject;
+      },
+      async () => "x".repeat(64),
+    );
     expect(response.status).toBe(200);
     expect(forwardedAuth).toBe("");
     expect(exchangeHeader).toBe("x".repeat(64));
     expect(forwardedBody).toContain(subject);
     expect(forwardedBody).not.toContain("hosted-token-secret");
     expect(response.headers.get("set-cookie") ?? "").toContain("rons_sovereign_session=");
-    const body = await response.json() as { session: Record<string, unknown> };
+    const body = (await response.json()) as { session: Record<string, unknown> };
     expect(body.session.access_token).toBeUndefined();
   });
 
@@ -92,7 +128,10 @@ describe("sovereign auth same-origin proxy", () => {
   test("rejects cross-origin auth mutations before contacting the gateway", async () => {
     process.env.RONS_SOVEREIGN_PROXY_ENABLED = "1";
     let calls = 0;
-    const mockFetch = (async () => { calls += 1; return Response.json({}); }) as typeof fetch;
+    const mockFetch = (async () => {
+      calls += 1;
+      return Response.json({});
+    }) as typeof fetch;
     const request = new Request("http://hub.local/api/sovereign/auth/sign-up", {
       method: "POST",
       headers: { "Content-Type": "application/json", Origin: "https://evil.example" },
@@ -108,7 +147,10 @@ describe("sovereign auth same-origin proxy", () => {
     const mockFetch = (async () => Response.json({ ok: true })) as typeof fetch;
     const request = new Request("https://hub.local/api/sovereign/auth/sign-out", {
       method: "POST",
-      headers: { Origin: "https://hub.local", Cookie: "rons_sovereign_session=token-1234567890123456" },
+      headers: {
+        Origin: "https://hub.local",
+        Cookie: "rons_sovereign_session=token-1234567890123456",
+      },
     });
     const response = await handleSovereignAuthProxy(request, "sign-out", mockFetch);
     const setCookie = response.headers.get("set-cookie") ?? "";
@@ -120,9 +162,17 @@ describe("sovereign auth same-origin proxy", () => {
     process.env.RONS_PRODUCTION_AUTH_COOKIE = "1";
     process.env.RONS_PRODUCTION_ORIGIN = "https://hub.example.invalid";
     let calls = 0;
-    const mockFetch = (async () => { calls += 1; return Response.json({}); }) as typeof fetch;
+    const mockFetch = (async () => {
+      calls += 1;
+      return Response.json({});
+    }) as typeof fetch;
     const bad = new Request("http://127.0.0.1:4173/api/sovereign/auth/sign-up", {
-      method: "POST", headers: { Origin: "https://hub.example.invalid", "X-Forwarded-Proto": "http", "X-Forwarded-Host": "hub.example.invalid" },
+      method: "POST",
+      headers: {
+        Origin: "https://hub.example.invalid",
+        "X-Forwarded-Proto": "http",
+        "X-Forwarded-Host": "hub.example.invalid",
+      },
       body: JSON.stringify({ email: "test@example.invalid", password: "test-password-123" }),
     });
     expect((await handleSovereignAuthProxy(bad, "sign-up", mockFetch)).status).toBe(403);
@@ -133,14 +183,23 @@ describe("sovereign auth same-origin proxy", () => {
     process.env.RONS_SOVEREIGN_PROXY_ENABLED = "1";
     process.env.RONS_PRODUCTION_AUTH_COOKIE = "1";
     process.env.RONS_PRODUCTION_ORIGIN = "https://hub.example.invalid";
-    const mockFetch = (async () => Response.json({ user: { id: "user-1" }, session: { access_token: "s".repeat(64) } })) as typeof fetch;
+    const mockFetch = (async () =>
+      Response.json({
+        user: { id: "user-1" },
+        session: { access_token: "s".repeat(64) },
+      })) as typeof fetch;
     const request = new Request("http://127.0.0.1:4173/api/sovereign/auth/sign-in", {
-      method: "POST", headers: { "Content-Type": "application/json", Origin: "https://hub.example.invalid", "X-Forwarded-Proto": "https", "X-Forwarded-Host": "hub.example.invalid" },
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "https://hub.example.invalid",
+        "X-Forwarded-Proto": "https",
+        "X-Forwarded-Host": "hub.example.invalid",
+      },
       body: JSON.stringify({ email: "test@example.invalid", password: "test-password-123" }),
     });
     const response = await handleSovereignAuthProxy(request, "sign-in", mockFetch);
     expect(response.status).toBe(200);
     expect(response.headers.get("set-cookie") ?? "").toContain("Secure");
   });
-
 });

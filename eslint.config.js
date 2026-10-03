@@ -37,4 +37,12 @@ export default tseslint.config(
     },
   },
   eslintPluginPrettier,
+  {
+    files: ["src/routes/**/*.tsx"],
+    rules: {
+      // TanStack's curried route factories export route objects, not React
+      // components. Its router plugin owns hot reload for these modules.
+      "react-refresh/only-export-components": "off",
+    },
+  },
 );

@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import {
   Outlet,
   Link,
@@ -135,15 +135,21 @@ function isPrivateDemoHost(host: string): boolean {
   return Boolean(match && Number(match[1]) >= 16 && Number(match[1]) <= 31);
 }
 
+const subscribeToDemoHost = () => () => {};
+const getServerDemoHost = () => null;
+function getDemoHost() {
+  const current = window.location.hostname;
+  return isPrivateDemoHost(current) ? current : null;
+}
+
 function LocalDemoLauncher() {
-  const [host, setHost] = useState<string | null>(null);
-  useEffect(() => {
-    const current = window.location.hostname;
-    if (isPrivateDemoHost(current)) setHost(current);
-  }, []);
+  const host = useSyncExternalStore(subscribeToDemoHost, getDemoHost, getServerDemoHost);
   if (!host) return null;
   const apps = [
-    ["Resonance Publish", 3101], ["Resonance Creator Studio", 3201], ["Resonance Media Sync", 3301], ["Resonance Creator Growth", 3401],
+    ["Resonance Publish", 3101],
+    ["Resonance Creator Studio", 3201],
+    ["Resonance Media Sync", 3301],
+    ["Resonance Creator Growth", 3401],
   ] as const;
   return (
     <aside className="fixed bottom-4 right-4 z-50 max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-background/95 p-3 shadow-xl backdrop-blur">
@@ -153,8 +159,13 @@ function LocalDemoLauncher() {
       </div>
       <div className="flex flex-wrap gap-2">
         {apps.map(([label, port]) => (
-          <a key={port} href={`http://${host}:${port}`} target="_blank" rel="noopener noreferrer"
-            className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent">
+          <a
+            key={port}
+            href={`http://${host}:${port}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
+          >
             {label}
           </a>
         ))}

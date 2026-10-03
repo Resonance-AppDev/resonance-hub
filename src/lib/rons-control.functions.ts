@@ -105,7 +105,7 @@ export const getRonsControlState = createServerFn({ method: "GET" })
   .middleware([requireRonsAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.userId);
-    let localHealth = { ok: false, model: "", error: "" };
+    let localHealth: { ok: boolean; model: string; error: string };
     try {
       // Intentional loopback-only health probe; no traffic leaves this host.
       // nosemgrep: typescript.react.security.react-insecure-request.react-insecure-request
