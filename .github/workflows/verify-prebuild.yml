@@ -57,20 +57,27 @@ jobs:
           # Need history so diff-based lint can compare against the base ref.
           fetch-depth: 0
 
-      # Secret scanning: gitleaks inspects the checked-out tree (and, on PRs,
-      # the diff against the base ref) for high-confidence credential
+      # Secret scanning: gitleaks inspects commit history (on PRs, every
+      # introduced commit) for high-confidence credential
       # patterns — API keys, tokens, private keys, provider secrets. Fails
       # the build on any finding. Runs before install/build so a leaked
       # credential is caught even if later steps would fail for other
       # reasons.
       - name: Scan for leaked secrets (gitleaks)
-        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2
+        shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # No GITLEAKS_LICENSE — required only for org-owned private repos
-          # under the paid tier. Public repos and personal repos run free.
-          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
-          GITLEAKS_ENABLE_SUMMARY: "true"
+          GITLEAKS_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GITLEAKS_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GITLEAKS_BEFORE_SHA: ${{ github.event.before }}
+        run: bash scripts/run-gitleaks.sh
+      - name: Upload redacted secret-scan report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: gitleaks-prebuild-${{ github.run_id }}
+          path: ${{ runner.temp }}/gitleaks-report.sarif
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: Set up Bun
         id: setup_bun
