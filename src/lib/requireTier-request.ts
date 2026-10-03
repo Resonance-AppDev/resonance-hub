@@ -52,6 +52,7 @@ type CachedEntitlement = {
 };
 
 const CACHE_TTL_MS = 60_000;
+const MAX_CACHE_ENTRIES = 2048;
 const cache = new Map<string, { ent: CachedEntitlement; expiresAt: number }>();
 const cacheKey = (userId: string, app: AppKey) => `${userId}:${app}`;
 
@@ -115,21 +116,21 @@ export async function requireTierFromRequest(args: {
   // 1. Extract bearer token.
   const authHeader = request.headers.get("authorization") ?? "";
   if (!authHeader.toLowerCase().startsWith("bearer ")) {
-    throw new Response(
-      JSON.stringify({ error: "unauthorized", message: "Sign in required" }),
-      { status: 401, headers },
-    );
+    throw new Response(JSON.stringify({ error: "unauthorized", message: "Sign in required" }), {
+      status: 401,
+      headers,
+    });
   }
   const accessToken = authHeader.slice(7).trim();
   if (!accessToken) {
-    throw new Response(
-      JSON.stringify({ error: "unauthorized", message: "Sign in required" }),
-      { status: 401, headers },
-    );
+    throw new Response(JSON.stringify({ error: "unauthorized", message: "Sign in required" }), {
+      status: 401,
+      headers,
+    });
   }
 
   // 2. Validate the bearer token through the selected backend provider.
-  let userId: string | null = null;
+  let userId: string | null;
   try {
     userId = await resolveBearerUserId(accessToken);
   } catch {
@@ -158,10 +159,10 @@ export async function requireTierFromRequest(args: {
       rows = await fetchSubscriptionRows(accessToken, userId, [app, "all_access"]);
     } catch {
       // Fail closed on provider/query errors.
-      throw new Response(
-        JSON.stringify(upgradeBody(app, required, "free", "inactive", returnTo)),
-        { status: 402, headers },
-      );
+      throw new Response(JSON.stringify(upgradeBody(app, required, "free", "inactive", returnTo)), {
+        status: 402,
+        headers,
+      });
     }
 
     const active = rows.filter((r) => r.status === "active");
@@ -203,18 +204,22 @@ export async function requireTierFromRequest(args: {
     }
 
     cache.set(cacheKey(userId, app), { ent, expiresAt: Date.now() + CACHE_TTL_MS });
+    while (cache.size > MAX_CACHE_ENTRIES) {
+      const oldest = cache.keys().next().value;
+      if (typeof oldest !== "string") break;
+      cache.delete(oldest);
+    }
   }
 
   // 5. Evaluate.
   const allowed =
-    ent.status === "active" &&
-    (ent.source === "all_access" || hasAtLeast(ent.tier, required));
+    ent.status === "active" && (ent.source === "all_access" || hasAtLeast(ent.tier, required));
 
   if (!allowed) {
-    throw new Response(
-      JSON.stringify(upgradeBody(app, required, ent.tier, ent.status, returnTo)),
-      { status: 402, headers },
-    );
+    throw new Response(JSON.stringify(upgradeBody(app, required, ent.tier, ent.status, returnTo)), {
+      status: 402,
+      headers,
+    });
   }
 
   return {

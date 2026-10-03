@@ -5,7 +5,7 @@ import { subscribeNewsletter } from "@/lib/newsletter.functions";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 const CANONICAL_ORIGIN = "https://reson8.life";
-import resonanceLogo from "@/assets/resonance-logo.png";
+
 import resonanceLockup from "@/assets/resonance-lockup.png";
 import logoEpublisher from "@/assets/logo-epublisher.png";
 import logoCreativeStudio from "@/assets/logo-creative-studio.png";
@@ -380,7 +380,7 @@ function BrandOrb({ className = "" }: { className?: string }) {
     <div className={`relative aspect-square ${className}`} aria-hidden>
       <div className="absolute inset-[5%] rounded-full bg-gradient-brand blur-2xl opacity-50 animate-orb" />
       <img
-        src={resonanceLogo}
+        src="/og-logo.png"
         alt=""
         width={1024}
         height={1024}

@@ -170,7 +170,7 @@
   transition:
     opacity 0.9s var(--ease-out-expo),
     transform 0.9s var(--ease-out-expo);
-  will-change: opacity, transform;
+
 }
 [data-reveal].is-visible {
   opacity: 1;
