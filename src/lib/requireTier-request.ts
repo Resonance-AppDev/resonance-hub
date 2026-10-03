@@ -52,6 +52,7 @@ type CachedEntitlement = {
 };
 
 const CACHE_TTL_MS = 60_000;
+const MAX_CACHE_ENTRIES = 2048;
 const cache = new Map<string, { ent: CachedEntitlement; expiresAt: number }>();
 const cacheKey = (userId: string, app: AppKey) => `${userId}:${app}`;
 
@@ -203,6 +204,11 @@ export async function requireTierFromRequest(args: {
     }
 
     cache.set(cacheKey(userId, app), { ent, expiresAt: Date.now() + CACHE_TTL_MS });
+    while (cache.size > MAX_CACHE_ENTRIES) {
+      const oldest = cache.keys().next().value;
+      if (typeof oldest !== "string") break;
+      cache.delete(oldest);
+    }
   }
 
   // 5. Evaluate.
