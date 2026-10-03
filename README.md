@@ -1,6 +1,6 @@
 # Resonance Hub
 
-Source of truth for the Reson8 ecosystem — billing authority, entitlements, ROP telemetry ingest, and shared governance for all spoke apps (Creative Studio, ePublisher, SyncVision, YouTube Optimizer).
+Source of truth for the Reson8 ecosystem — billing authority, entitlements, ROP telemetry ingest, and shared governance for all spoke apps (Resonance Creator Studio, Resonance Publish, Resonance Media Sync, Resonance Creator Growth).
 
 - **Live:** https://reson8.life
 - **Governance (RCGF v1.0):** https://reson8.life/governance

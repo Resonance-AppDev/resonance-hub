@@ -52,23 +52,25 @@ jobs:
     name: Secret scan (gitleaks)
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # Don't gate the whole workflow on gitleaks — license/quota hiccups on
-    # the action shouldn't block security-events uploads from CodeQL/Semgrep.
-    continue-on-error: true
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
-      - name: gitleaks
-        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2
+      - name: Scan for leaked secrets (gitleaks)
+        shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # No license required for public repos or personal private repos.
-          # For organization private repos add GITLEAKS_LICENSE in repo secrets
-          # and uncomment:
-          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
-          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
-          GITLEAKS_ENABLE_SUMMARY: "true"
+          GITLEAKS_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GITLEAKS_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GITLEAKS_BEFORE_SHA: ${{ github.event.before }}
+        run: bash scripts/run-gitleaks.sh
+      - name: Upload redacted secret-scan report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: gitleaks-security-${{ github.run_id }}
+          path: ${{ runner.temp }}/gitleaks-report.sarif
+          if-no-files-found: ignore
+          retention-days: 14
 
   dependency-audit:
     name: Dependency audit (npm advisories)

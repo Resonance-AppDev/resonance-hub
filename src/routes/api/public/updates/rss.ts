@@ -1,11 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRequestHost, getRequestUrl } from "@tanstack/react-start/server";
-import {
-  computeFeedHeaders,
-  matchesConditional,
-  notModifiedHeaders,
-} from "@/lib/feed-cache";
-
+import { computeFeedHeaders, matchesConditional, notModifiedHeaders } from "@/lib/feed-cache";
 
 type UpdateLink = { label: string; href: string };
 type UpdateItem = {
@@ -21,8 +16,19 @@ type UpdateItem = {
 };
 
 const MONTHS: Record<string, number> = {
-  jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
-  jul: 6, aug: 7, sep: 8, sept: 8, oct: 9, nov: 10, dec: 11,
+  jan: 0,
+  feb: 1,
+  mar: 2,
+  apr: 3,
+  may: 4,
+  jun: 5,
+  jul: 6,
+  aug: 7,
+  sep: 8,
+  sept: 8,
+  oct: 9,
+  nov: 10,
+  dec: 11,
 };
 
 // Accepts "Jun 2026", "June 2026", "2026-06-15", or an ISO date.
@@ -60,7 +66,10 @@ function absolutize(href: string, origin: string): string {
 
 // Stable per-item GUID so readers don't re-notify on republish.
 function guidFor(u: UpdateItem, origin: string): string {
-  const slug = u.app.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const slug = u.app
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
   const dateKey = parseDate(u.date).toISOString().slice(0, 7); // YYYY-MM
   return `${origin}/updates/${slug}/${dateKey}`;
 }
@@ -85,7 +94,8 @@ let updatesInflight: Promise<UpdateItem[]> | null = null;
 
 async function loadUpdates(origin: string): Promise<UpdateItem[]> {
   const now = Date.now();
-  if (updatesCache && updatesCache.origin === origin && updatesCache.expiresAt > now) return updatesCache.value;
+  if (updatesCache && updatesCache.origin === origin && updatesCache.expiresAt > now)
+    return updatesCache.value;
   if (updatesInflight) return updatesInflight;
   updatesInflight = (async () => {
     const res = await fetch(`${origin}/content/updates.json`, {
@@ -97,7 +107,11 @@ async function loadUpdates(origin: string): Promise<UpdateItem[]> {
     updatesCache = { origin, expiresAt: Date.now() + UPDATES_CACHE_TTL_MS, value };
     return value;
   })();
-  try { return await updatesInflight; } finally { updatesInflight = null; }
+  try {
+    return await updatesInflight;
+  } finally {
+    updatesInflight = null;
+  }
 }
 
 const ALLOWED_STATUSES = ["Live", "Updating", "New", "Free Pilot"] as const;
@@ -118,11 +132,7 @@ function applyStatusFilter(updates: UpdateItem[], statuses: string[]): UpdateIte
   return updates.filter((u) => set.has(u.status.toLowerCase()));
 }
 
-function buildRss(
-  updates: UpdateItem[],
-  origin: string,
-  statusFilter: string[],
-): string {
+function buildRss(updates: UpdateItem[], origin: string, statusFilter: string[]): string {
   const qs = statusFilter.length > 0 ? `?status=${encodeURIComponent(statusFilter.join(","))}` : "";
   const feedUrl = `${origin}/api/public/updates/rss${qs}`;
   const siteUrl = `${origin}/`;
@@ -146,7 +156,10 @@ function buildRss(
       }
       if (u.links && u.links.length > 0) {
         const lis = u.links
-          .map((l) => `<li><a href="${escapeXml(absolutize(l.href, origin))}">${escapeXml(l.label)}</a></li>`)
+          .map(
+            (l) =>
+              `<li><a href="${escapeXml(absolutize(l.href, origin))}">${escapeXml(l.label)}</a></li>`,
+          )
           .join("");
         descriptionParts.push(`<p><strong>Links:</strong></p><ul>${lis}</ul>`);
       }
@@ -171,7 +184,7 @@ function buildRss(
     "  <channel>",
     `    <title>${escapeXml(`Resonance — Latest Updates${titleSuffix}`)}</title>`,
     `    <link>${escapeXml(siteUrl)}</link>`,
-    "    <description>Release notes and status changes across the Resonance ecosystem: Hub, ePublisher, Creative Studio, Sync Vision, YouTube Optimizer, Career Compass, and the Resonance Podcast.</description>",
+    "    <description>Release notes and status changes across the Resonance ecosystem: Hub, Resonance Publish, Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Career Compass, and the Resonance Podcast.</description>",
     "    <language>en</language>",
     `    <lastBuildDate>${now}</lastBuildDate>`,
     `    <atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml" />`,
@@ -195,9 +208,7 @@ export const Route = createFileRoute("/api/public/updates/rss")({
           const filtered = applyStatusFilter(all, statusFilter);
           const xml = buildRss(filtered, origin, statusFilter);
           const latest = filtered.length
-            ? filtered
-                .map((u) => parseDate(u.date))
-                .reduce((a, b) => (a > b ? a : b))
+            ? filtered.map((u) => parseDate(u.date)).reduce((a, b) => (a > b ? a : b))
             : null;
           const cache = await computeFeedHeaders(xml, latest);
           if (matchesConditional(request, cache)) {
@@ -219,9 +230,7 @@ export const Route = createFileRoute("/api/public/updates/rss")({
             { status: 500, headers: { "content-type": "application/xml" } },
           );
         }
-
       },
     },
   },
 });
-

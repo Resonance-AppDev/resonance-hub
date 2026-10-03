@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
         {
           name: "description",
           content:
-            "Explore Resonance AI tools for eBooks, design, music-video storyboards, YouTube growth, and career guidance. Full product access is temporarily free while Resonance measures real usage and establishes sustainable pricing.",
+            "Explore Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Resonance Publish, and Career Compass. Full product access is temporarily free while Resonance measures usage and establishes sustainable pricing.",
         },
         {
           property: "og:title",
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
         {
           property: "og:description",
           content:
-            "Explore Resonance AI tools for eBooks, design, music-video storyboards, YouTube growth, and career guidance. Full product access is temporarily free while Resonance measures real usage and establishes sustainable pricing.",
+            "Explore Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Resonance Publish, and Career Compass. Full product access is temporarily free while Resonance measures usage and establishes sustainable pricing.",
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: `${origin}/` },
@@ -58,7 +58,7 @@ export const Route = createFileRoute("/")({
         {
           name: "twitter:description",
           content:
-            "Explore Resonance AI tools for eBooks, design, music-video storyboards, YouTube growth, and career guidance. Full product access is temporarily free while Resonance measures real usage and establishes sustainable pricing.",
+            "Explore Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Resonance Publish, and Career Compass. Full product access is temporarily free while Resonance measures usage and establishes sustainable pricing.",
         },
         { name: "twitter:image", content: `${origin}/og-logo.png` },
         { name: "twitter:image:alt", content: "The Resonance logo" },
@@ -77,7 +77,6 @@ export const Route = createFileRoute("/")({
           title: "RONSAS | Latest Updates (Atom)",
           href: `${origin}/api/public/updates/atom`,
         },
-
       ],
       scripts: [
         {
@@ -107,48 +106,93 @@ export const Route = createFileRoute("/")({
               },
               {
                 "@type": "SoftwareApplication",
-                name: "Resonance ePublisher",
+                name: "Resonance Publish",
                 applicationCategory: "MultimediaApplication",
                 operatingSystem: "Web",
                 url: "https://epublisher.reson8.life",
-                offers: { "@type": "Offer", price: "0", priceCurrency: "ZAR", availability: "https://schema.org/InStock", description: "Free promotional access" },
+                offers: {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "ZAR",
+                  availability: "https://schema.org/InStock",
+                  description: "Free promotional access",
+                },
               },
               {
                 "@type": "SoftwareApplication",
-                name: "Creative Studio",
+                name: "Resonance Creator Studio",
                 applicationCategory: "DesignApplication",
                 operatingSystem: "Web",
                 url: "https://creative.reson8.life",
-                offers: { "@type": "Offer", price: "0", priceCurrency: "ZAR", availability: "https://schema.org/InStock", description: "Free promotional access" },
+                offers: {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "ZAR",
+                  availability: "https://schema.org/InStock",
+                  description: "Free promotional access",
+                },
               },
               {
                 "@type": "SoftwareApplication",
-                name: "Sync Vision",
+                name: "Resonance Media Sync",
                 applicationCategory: "MultimediaApplication",
                 operatingSystem: "Web",
                 url: "https://sync.reson8.life",
-                offers: { "@type": "Offer", price: "0", priceCurrency: "ZAR", availability: "https://schema.org/InStock", description: "Free promotional access" },
+                offers: {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "ZAR",
+                  availability: "https://schema.org/InStock",
+                  description: "Free promotional access",
+                },
               },
               {
                 "@type": "SoftwareApplication",
-                name: "YouTube Optimizer",
+                name: "Resonance Creator Growth",
                 applicationCategory: "BusinessApplication",
                 operatingSystem: "Web",
                 url: "https://youtube.reson8.life",
-                offers: { "@type": "Offer", price: "0", priceCurrency: "ZAR", availability: "https://schema.org/InStock", description: "Free promotional access" },
+                offers: {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "ZAR",
+                  availability: "https://schema.org/InStock",
+                  description: "Free promotional access",
+                },
               },
               {
                 "@type": "FAQPage",
                 mainEntity: [
-                  ["Is billing active during the promotion?", "No. New billing and checkout are paused while Resonance provides full promotional access and measures real usage to determine sustainable pricing."],
-                  ["Can I use Resonance tools for free?", "Yes. During the current promotion, Resonance ePublisher, Creative Studio, Sync Vision, YouTube Optimizer, Career Compass, and ecosystem media are available without payment. Sign-in may still be required so usage can be measured."],
-                  ["Why is sign-in still required?", "Sign-in keeps projects and usage attributable during the free-access promotion so Resonance can measure demand and provider costs before setting future pricing."],
-                  ["When will pricing return?", "Pricing will be introduced only after Resonance has enough real usage and cost data to set sustainable rates. No future price is implied by the promotion."],
-                  ["Will I be charged during the promotion?", "No new checkout is available during the promotion. Promotional access does not require a new payment."],
+                  [
+                    "Is billing active during the promotion?",
+                    "No. New billing and checkout are paused while Resonance provides full promotional access and measures real usage to determine sustainable pricing.",
+                  ],
+                  [
+                    "Can I use Resonance tools for free?",
+                    "Yes. During the current promotion, Resonance Publish, Resonance Creator Studio, Resonance Media Sync, Resonance Creator Growth, Career Compass, and ecosystem media are available without payment. Sign-in may still be required so usage can be measured.",
+                  ],
+                  [
+                    "Why is sign-in still required?",
+                    "Sign-in keeps projects and usage attributable during the free-access promotion so Resonance can measure demand and provider costs before setting future pricing.",
+                  ],
+                  [
+                    "When will pricing return?",
+                    "Pricing will be introduced only after Resonance has enough real usage and cost data to set sustainable rates. No future price is implied by the promotion.",
+                  ],
+                  [
+                    "Will I be charged during the promotion?",
+                    "No new checkout is available during the promotion. Promotional access does not require a new payment.",
+                  ],
                   ["Can schools use Career Compass?", "Yes — schools can join the free pilot."],
 
-                  ["Does Sync Vision generate final videos or AI-ready storyboards?", "Sync Vision produces AI-ready music-video storyboards and scene prompts."],
-                  ["Can Creative Studio create ads and product visuals?", "Yes — posters, brochures, social ads, product mockups, and short marketing videos."],
+                  [
+                    "Does Resonance Media Sync generate final videos or AI-ready storyboards?",
+                    "Resonance Media Sync produces AI-ready music-video storyboards and scene prompts.",
+                  ],
+                  [
+                    "Can Resonance Creator Studio create ads and product visuals?",
+                    "Yes — posters, brochures, social ads, product mockups, and short marketing videos.",
+                  ],
                 ].map(([q, a]) => ({
                   "@type": "Question",
                   name: q,
@@ -181,9 +225,8 @@ type App = {
 
 const apps: App[] = [
   {
-    name: "Resonance ePublisher",
-    tagline:
-      "Turn topics, manuscripts, PDFs, and research into polished audiovisual eBooks.",
+    name: "Resonance Publish",
+    tagline: "Turn topics, manuscripts, PDFs, and research into polished audiovisual eBooks.",
     domain: "epublisher.reson8.life",
     href: "https://epublisher.reson8.life",
     localPort: 3101,
@@ -201,9 +244,8 @@ const apps: App[] = [
     },
   },
   {
-    name: "Creative Studio",
-    tagline:
-      "Design posters, ads, product visuals, brochures, and campaign media instantly.",
+    name: "Resonance Creator Studio",
+    tagline: "Design posters, ads, product visuals, brochures, and campaign media instantly.",
     domain: "creative.reson8.life",
     href: "https://creative.reson8.life",
     localPort: 3201,
@@ -220,7 +262,7 @@ const apps: App[] = [
     },
   },
   {
-    name: "Sync Vision",
+    name: "Resonance Media Sync",
     tagline:
       "Turn songs into cinematic storyboards, character concepts, captions, and video-generation prompts.",
     domain: "sync.reson8.life",
@@ -240,8 +282,7 @@ const apps: App[] = [
   },
   {
     name: "The Resonance Podcast",
-    tagline:
-      "Free ecosystem media, thought leadership, conversations, and community content.",
+    tagline: "Free ecosystem media, thought leadership, conversations, and community content.",
     domain: "resonance-podcast.com",
     href: "https://www.resonance-podcast.com/episodes",
     subscribeHref: "https://www.resonance-podcast.com/episodes",
@@ -275,9 +316,8 @@ const apps: App[] = [
     },
   },
   {
-    name: "YouTube Optimizer",
-    tagline:
-      "Audit channels, improve thumbnails, titles, content strategy, and growth planning.",
+    name: "Resonance Creator Growth",
+    tagline: "Audit channels, improve thumbnails, titles, content strategy, and growth planning.",
     domain: "youtube.reson8.life",
     href: "https://youtube.reson8.life",
     localPort: 3401,
@@ -295,45 +335,45 @@ const apps: App[] = [
   },
 ];
 
-
-const accentMap: Record<App["accent"], { ring: string; dot: string; text: string; chip: string }> = {
-  violet: {
-    ring: "hover:border-[hsl(265_85%_65%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(265_85%_65%/0.6)]",
-    dot: "bg-[hsl(265_85%_65%)] shadow-[0_0_20px_hsl(265_85%_65%/0.8)]",
-    text: "text-[hsl(265_85%_75%)]",
-    chip: "bg-[hsl(265_85%_65%/0.12)] text-[hsl(265_85%_80%)] border-[hsl(265_85%_65%/0.3)]",
-  },
-  magenta: {
-    ring: "hover:border-[hsl(295_90%_60%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(295_90%_60%/0.6)]",
-    dot: "bg-[hsl(295_90%_60%)] shadow-[0_0_20px_hsl(295_90%_60%/0.8)]",
-    text: "text-[hsl(295_90%_70%)]",
-    chip: "bg-[hsl(295_90%_60%/0.12)] text-[hsl(295_90%_75%)] border-[hsl(295_90%_60%/0.3)]",
-  },
-  pink: {
-    ring: "hover:border-[hsl(325_90%_65%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(325_90%_65%/0.6)]",
-    dot: "bg-[hsl(325_90%_65%)] shadow-[0_0_20px_hsl(325_90%_65%/0.8)]",
-    text: "text-[hsl(325_90%_75%)]",
-    chip: "bg-[hsl(325_90%_65%/0.12)] text-[hsl(325_90%_80%)] border-[hsl(325_90%_65%/0.3)]",
-  },
-  cyan: {
-    ring: "hover:border-[hsl(190_90%_60%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(190_90%_60%/0.6)]",
-    dot: "bg-[hsl(190_90%_60%)] shadow-[0_0_20px_hsl(190_90%_60%/0.8)]",
-    text: "text-[hsl(190_90%_70%)]",
-    chip: "bg-[hsl(190_90%_60%/0.12)] text-[hsl(190_90%_75%)] border-[hsl(190_90%_60%/0.3)]",
-  },
-  emerald: {
-    ring: "hover:border-[hsl(150_80%_55%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(150_80%_55%/0.6)]",
-    dot: "bg-[hsl(150_80%_55%)] shadow-[0_0_20px_hsl(150_80%_55%/0.8)]",
-    text: "text-[hsl(150_80%_65%)]",
-    chip: "bg-[hsl(150_80%_55%/0.12)] text-[hsl(150_80%_70%)] border-[hsl(150_80%_55%/0.3)]",
-  },
-  gold: {
-    ring: "",
-    dot: "bg-white/40",
-    text: "text-white/60",
-    chip: "bg-white/5 text-white/60 border-white/10",
-  },
-};
+const accentMap: Record<App["accent"], { ring: string; dot: string; text: string; chip: string }> =
+  {
+    violet: {
+      ring: "hover:border-[hsl(265_85%_65%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(265_85%_65%/0.6)]",
+      dot: "bg-[hsl(265_85%_65%)] shadow-[0_0_20px_hsl(265_85%_65%/0.8)]",
+      text: "text-[hsl(265_85%_75%)]",
+      chip: "bg-[hsl(265_85%_65%/0.12)] text-[hsl(265_85%_80%)] border-[hsl(265_85%_65%/0.3)]",
+    },
+    magenta: {
+      ring: "hover:border-[hsl(295_90%_60%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(295_90%_60%/0.6)]",
+      dot: "bg-[hsl(295_90%_60%)] shadow-[0_0_20px_hsl(295_90%_60%/0.8)]",
+      text: "text-[hsl(295_90%_70%)]",
+      chip: "bg-[hsl(295_90%_60%/0.12)] text-[hsl(295_90%_75%)] border-[hsl(295_90%_60%/0.3)]",
+    },
+    pink: {
+      ring: "hover:border-[hsl(325_90%_65%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(325_90%_65%/0.6)]",
+      dot: "bg-[hsl(325_90%_65%)] shadow-[0_0_20px_hsl(325_90%_65%/0.8)]",
+      text: "text-[hsl(325_90%_75%)]",
+      chip: "bg-[hsl(325_90%_65%/0.12)] text-[hsl(325_90%_80%)] border-[hsl(325_90%_65%/0.3)]",
+    },
+    cyan: {
+      ring: "hover:border-[hsl(190_90%_60%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(190_90%_60%/0.6)]",
+      dot: "bg-[hsl(190_90%_60%)] shadow-[0_0_20px_hsl(190_90%_60%/0.8)]",
+      text: "text-[hsl(190_90%_70%)]",
+      chip: "bg-[hsl(190_90%_60%/0.12)] text-[hsl(190_90%_75%)] border-[hsl(190_90%_60%/0.3)]",
+    },
+    emerald: {
+      ring: "hover:border-[hsl(150_80%_55%/0.45)] hover:shadow-[0_0_60px_-15px_hsl(150_80%_55%/0.6)]",
+      dot: "bg-[hsl(150_80%_55%)] shadow-[0_0_20px_hsl(150_80%_55%/0.8)]",
+      text: "text-[hsl(150_80%_65%)]",
+      chip: "bg-[hsl(150_80%_55%/0.12)] text-[hsl(150_80%_70%)] border-[hsl(150_80%_55%/0.3)]",
+    },
+    gold: {
+      ring: "",
+      dot: "bg-white/40",
+      text: "text-white/60",
+      chip: "bg-white/5 text-white/60 border-white/10",
+    },
+  };
 
 function BrandOrb({ className = "" }: { className?: string }) {
   return (
@@ -466,12 +506,8 @@ function HeroCarousel({
               className="block h-1.5 rounded-full transition-all"
               style={{
                 width: idx === i ? 22 : 6,
-                background:
-                  idx === i
-                    ? `hsl(${accentHsl[it.accent]})`
-                    : "hsl(0 0% 100% / 0.35)",
-                boxShadow:
-                  idx === i ? `0 0 12px hsl(${accentHsl[it.accent]} / 0.7)` : "none",
+                background: idx === i ? `hsl(${accentHsl[it.accent]})` : "hsl(0 0% 100% / 0.35)",
+                boxShadow: idx === i ? `0 0 12px hsl(${accentHsl[it.accent]} / 0.7)` : "none",
               }}
             />
           </button>
@@ -488,7 +524,6 @@ const NAV_LINKS = [
   { id: "roadmap", label: "Roadmap" },
   { id: "faq", label: "FAQ" },
 ] as const;
-
 
 function useActiveSection(ids: readonly string[]) {
   const [active, setActive] = useState<string>(ids[0]);
@@ -535,12 +570,19 @@ function useScrollReveal() {
 function withRuntimeAppLinks(origin: string): App[] {
   try {
     const host = new URL(origin).hostname;
-    const isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1" ||
-      host.startsWith("10.") || host.startsWith("192.168.") || /^172\.(1[6-9]|2\d|3[01])\./.test(host);
+    const isLocal =
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host === "::1" ||
+      host.startsWith("10.") ||
+      host.startsWith("192.168.") ||
+      /^172\.(1[6-9]|2\d|3[01])\./.test(host);
     if (!isLocal) return apps;
-    return apps.map((app) => app.localPort
-      ? { ...app, href: `http://${host}:${app.localPort}/`, domain: `${host}:${app.localPort}` }
-      : app);
+    return apps.map((app) =>
+      app.localPort
+        ? { ...app, href: `http://${host}:${app.localPort}/`, domain: `${host}:${app.localPort}` }
+        : app,
+    );
   } catch {
     return apps;
   }
@@ -557,7 +599,6 @@ function Index() {
   const { origin } = Route.useLoaderData();
   const runtimeApps = withRuntimeAppLinks(origin);
   void runtimeApps[carouselIndex];
-
 
   async function onJoinSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -579,7 +620,11 @@ function Index() {
     <div className="min-h-screen text-foreground selection:bg-[hsl(295_90%_60%/0.3)]">
       <nav className="fixed top-0 w-full z-50 px-6 py-3.5 backdrop-blur-xl bg-background/70 border-b border-white/5">
         <div className="flex justify-between items-center gap-3">
-          <a href="#" className="flex items-center gap-2.5 group min-w-0" aria-label="The Resonance — Home">
+          <a
+            href="#"
+            className="flex items-center gap-2.5 group min-w-0"
+            aria-label="The Resonance — Home"
+          >
             <img
               src={resonanceLockup}
               alt="The Resonance"
@@ -626,7 +671,9 @@ function Index() {
               onClick={() => setMobileMenuOpen((v) => !v)}
               className="md:hidden grid place-items-center h-10 w-10 rounded-full border border-white/15 hover:border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(295_90%_60%)]"
             >
-              <span aria-hidden className="text-lg leading-none">{mobileMenuOpen ? "✕" : "☰"}</span>
+              <span aria-hidden className="text-lg leading-none">
+                {mobileMenuOpen ? "✕" : "☰"}
+              </span>
             </button>
           </div>
         </div>
@@ -656,7 +703,6 @@ function Index() {
         )}
       </nav>
 
-
       <main className="pt-28 pb-24 px-6 max-w-7xl mx-auto">
         {/* HERO */}
         <section className="pt-12 pb-16 grid md:grid-cols-[1.4fr_1fr] gap-12 items-center animate-reveal">
@@ -669,13 +715,16 @@ function Index() {
               AI tools for South African creators, publishers, schools, and small businesses.
             </h1>
             <p className="text-base md:text-lg text-white/75 leading-[1.65] text-pretty max-w-[58ch] mb-6">
-              Create eBooks, posters, campaigns, music-video storyboards, YouTube audits, and career reports from one Resonance hub.
+              Create eBooks, posters, campaigns, music-video storyboards, YouTube audits, and career
+              reports from one Resonance hub.
             </p>
             <p className="text-sm text-white/65 leading-relaxed max-w-[58ch] mb-4">
-              Open every Resonance product at no charge during the promotion, then help us learn from real usage so future pricing reflects actual operating cost.
+              Open every Resonance product at no charge during the promotion, then help us learn
+              from real usage so future pricing reflects actual operating cost.
             </p>
             <p className="text-[13px] text-white/60 leading-relaxed max-w-[58ch] mb-10">
-              All Resonance products are temporarily free during this promotion while real usage, provider consumption, and support demand are measured.
+              All Resonance products are temporarily free during this promotion while real usage,
+              provider consumption, and support demand are measured.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
@@ -699,15 +748,17 @@ function Index() {
             </div>
           </div>
           <div className="md:pl-4">
-            <HeroCarousel items={runtimeApps} activeIndex={carouselIndex} onChange={setCarouselIndex} />
+            <HeroCarousel
+              items={runtimeApps}
+              activeIndex={carouselIndex}
+              onChange={setCarouselIndex}
+            />
           </div>
         </section>
-
 
         {/* TRUST STRIP */}
         <section aria-label="Trust" className="mb-20 -mt-4">
           <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] font-mono uppercase tracking-[0.18em] text-white/65">
-
             {[
               "Built in South Africa",
               "RONSAS governed",
@@ -717,7 +768,10 @@ function Index() {
               "POPIA-conscious",
               "Measured usage & cost",
             ].map((t) => (
-              <li key={t} className="px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02]">
+              <li
+                key={t}
+                className="px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02]"
+              >
                 {t}
               </li>
             ))}
@@ -851,22 +905,22 @@ function Index() {
                 title: "Publish an eBook",
                 body: "Turn manuscripts, PDFs, and stories into polished audiovisual books.",
                 href: "https://epublisher.reson8.life",
-    localPort: 3101,
-                cta: "Open ePublisher",
+                localPort: 3101,
+                cta: "Open Resonance Publish",
               },
               {
                 title: "Create campaign visuals",
                 body: "Generate posters, ads, brochures, videos, and product campaigns.",
                 href: "https://creative.reson8.life",
-    localPort: 3201,
-                cta: "Open Creative Studio",
+                localPort: 3201,
+                cta: "Open Resonance Creator Studio",
               },
               {
                 title: "Build a music-video concept",
                 body: "Build music-video storyboards, character concepts, and AI-ready scene prompts.",
                 href: "https://sync.reson8.life",
-    localPort: 3301,
-                cta: "Open Sync Vision",
+                localPort: 3301,
+                cta: "Open Resonance Media Sync",
               },
               {
                 title: "Explore a career path",
@@ -879,7 +933,7 @@ function Index() {
                 body: "Audit thumbnails, titles, content strategy, and channel growth opportunities.",
                 href: "https://youtube.reson8.life",
                 localPort: 3401,
-                cta: "Open YouTube Optimizer",
+                cta: "Open Resonance Creator Growth",
               },
             ].map((p) => (
               <article
@@ -901,7 +955,6 @@ function Index() {
           </div>
         </section>
 
-
         {/* APPS */}
         <section id="apps" data-reveal className="mb-32">
           <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
@@ -909,13 +962,15 @@ function Index() {
               <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/65 mb-3">
                 01 / The Apps
               </div>
-              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-[-0.025em]">Choose a Resonance tool</h2>
+              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-[-0.025em]">
+                Choose a Resonance tool
+              </h2>
             </div>
             <p className="text-white/60 max-w-md text-sm leading-relaxed">
-              Each app is independently deployed. Full access is temporarily free across the suite while usage and provider costs are measured.
+              Each app is independently deployed. Full access is temporarily free across the suite
+              while usage and provider costs are measured.
             </p>
           </div>
-
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {runtimeApps.map((app, i) => {
@@ -936,7 +991,7 @@ function Index() {
                     >
                       {app.status === "live" ? "Live" : app.status === "free" ? "Free" : "Soon"}
                     </span>
-                  <div className={`size-2.5 rounded-full ${a.dot} animate-pulse-slow`} />
+                    <div className={`size-2.5 rounded-full ${a.dot} animate-pulse-slow`} />
                   </div>
 
                   <img
@@ -956,10 +1011,14 @@ function Index() {
 
                   <div className={`rounded-xl border px-3.5 py-3 mb-2 ${a.chip}`}>
                     <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] mb-1.5">
-                      <span aria-hidden className="text-base leading-none">{app.attribute.icon}</span>
+                      <span aria-hidden className="text-base leading-none">
+                        {app.attribute.icon}
+                      </span>
                       <span>{app.attribute.label}</span>
                     </div>
-                    <p className="text-[12px] leading-relaxed text-white/70">{app.attribute.body}</p>
+                    <p className="text-[12px] leading-relaxed text-white/70">
+                      {app.attribute.body}
+                    </p>
                   </div>
 
                   <div className="mt-auto pt-6 border-t border-white/10">
@@ -984,16 +1043,21 @@ function Index() {
                           rel="noopener noreferrer"
                           className="px-3 py-2.5 rounded-full bg-gradient-brand text-white text-xs font-bold uppercase tracking-widest text-center shadow-[0_0_25px_-8px_hsl(295_90%_60%/0.8)] hover:shadow-[0_0_35px_-5px_hsl(295_90%_60%/0.9)] transition-shadow"
                         >
-                          {app.name === "The Resonance Podcast" ? "Listen" : app.name === "Career Compass" ? "Try pilot" : "Try it"}
+                          {app.name === "The Resonance Podcast"
+                            ? "Listen"
+                            : app.name === "Career Compass"
+                              ? "Try pilot"
+                              : "Try it"}
                         </a>
                         <a
                           href={app.subscribeHref}
-                          {...(app.subscribeHref.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+                          {...(app.subscribeHref.startsWith("http")
+                            ? { target: "_blank", rel: "noreferrer" }
+                            : {})}
                           className="px-3 py-2.5 rounded-full border border-white/15 hover:border-white/40 text-xs font-bold uppercase tracking-widest text-center transition-colors"
                         >
                           {app.status === "free" ? "Learn more" : "Open free"}
                         </a>
-
                       </div>
                     )}
                   </div>
@@ -1013,14 +1077,21 @@ function Index() {
               All Resonance products are free during the promotion.
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto text-sm leading-relaxed mb-5">
-              Billing, checkout, subscriptions, passes, paid packs, and credit purchases are paused while we measure
-              real provider consumption, infrastructure cost, support demand, and feature usage.
+              Billing, checkout, subscriptions, passes, paid packs, and credit purchases are paused
+              while we measure real provider consumption, infrastructure cost, support demand, and
+              feature usage.
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-8 text-[11px] font-mono uppercase tracking-wider text-white/70">
-              <span className="px-3 py-1.5 rounded-full border border-white/10">Full app access</span>
+              <span className="px-3 py-1.5 rounded-full border border-white/10">
+                Full app access
+              </span>
               <span className="px-3 py-1.5 rounded-full border border-white/10">No checkout</span>
-              <span className="px-3 py-1.5 rounded-full border border-white/10">No subscription</span>
-              <span className="px-3 py-1.5 rounded-full border border-white/10">Usage & cost measured</span>
+              <span className="px-3 py-1.5 rounded-full border border-white/10">
+                No subscription
+              </span>
+              <span className="px-3 py-1.5 rounded-full border border-white/10">
+                Usage & cost measured
+              </span>
             </div>
             <div className="flex flex-wrap justify-center gap-3">
               <a
@@ -1049,7 +1120,8 @@ function Index() {
               Use the full suite while we learn what sustainable pricing should be
             </h3>
             <p className="text-white/60 max-w-2xl mx-auto text-sm leading-relaxed">
-              The promotion temporarily removes commercial feature gates. Sign in where requested so usage can be measured accurately.
+              The promotion temporarily removes commercial feature gates. Sign in where requested so
+              usage can be measured accurately.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1080,31 +1152,54 @@ function Index() {
             ))}
           </div>
           <p className="text-center text-xs text-white/60 mt-6">
-            No card, checkout, recurring plan, pass, pack, or credit purchase is required during this promotion.
+            No card, checkout, recurring plan, pass, pack, or credit purchase is required during
+            this promotion.
           </p>
         </section>
         {/* ROADMAP */}
         <section id="roadmap" data-reveal className="mb-24">
           <div className="text-center mb-8">
-            <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/65 mb-3">Roadmap</div>
-            <h3 className="text-2xl md:text-4xl font-bold tracking-tight mb-3">What&apos;s coming next</h3>
-            <p className="text-white/60 max-w-2xl mx-auto text-sm leading-relaxed">Current lifecycle status without speculative delivery dates.</p>
+            <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/65 mb-3">
+              Roadmap
+            </div>
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight mb-3">
+              What&apos;s coming next
+            </h3>
+            <p className="text-white/60 max-w-2xl mx-auto text-sm leading-relaxed">
+              Current lifecycle status without speculative delivery dates.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { title: "Unified Hub login", body: "Single sign-on across every Resonance app.", status: "In rollout" },
-              { title: "Cost instrumentation", body: "Provider consumption and operational cost signals captured across app workflows.", status: "In development" },
-              { title: "Career Compass pilot scaling", body: "Measure school, learner, support, and report-delivery demand before setting a post-pilot model.", status: "Planned" },
+              {
+                title: "Unified Hub login",
+                body: "Single sign-on across every Resonance app.",
+                status: "In rollout",
+              },
+              {
+                title: "Cost instrumentation",
+                body: "Provider consumption and operational cost signals captured across app workflows.",
+                status: "In development",
+              },
+              {
+                title: "Career Compass pilot scaling",
+                body: "Measure school, learner, support, and report-delivery demand before setting a post-pilot model.",
+                status: "Planned",
+              },
             ].map((r) => (
-              <article key={r.title} className="rounded-2xl border border-white/10 bg-card/50 backdrop-blur-xl p-5">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-white/50 mb-2">{r.status}</div>
+              <article
+                key={r.title}
+                className="rounded-2xl border border-white/10 bg-card/50 backdrop-blur-xl p-5"
+              >
+                <div className="text-[10px] font-mono uppercase tracking-widest text-white/50 mb-2">
+                  {r.status}
+                </div>
                 <h4 className="text-sm font-bold tracking-tight mb-2">{r.title}</h4>
                 <p className="text-xs text-white/65 leading-relaxed">{r.body}</p>
               </article>
             ))}
           </div>
         </section>
-
 
         {/* LATEST UPDATES */}
         <section id="updates" data-reveal className="mb-24">
@@ -1113,11 +1208,14 @@ function Index() {
               <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/65 mb-3">
                 Latest updates
               </div>
-              <h2 className="font-display text-2xl md:text-4xl font-bold tracking-[-0.025em]">What&apos;s new across the ecosystem</h2>
+              <h2 className="font-display text-2xl md:text-4xl font-bold tracking-[-0.025em]">
+                What&apos;s new across the ecosystem
+              </h2>
             </div>
             <div className="flex flex-col items-start md:items-end gap-3 max-w-md">
               <p className="text-white/60 text-sm leading-relaxed">
-                See what has shipped, what is changing, and what is coming next across the Resonance ecosystem.
+                See what has shipped, what is changing, and what is coming next across the Resonance
+                ecosystem.
               </p>
               <div className="flex items-center gap-2 flex-wrap">
                 <a
@@ -1135,12 +1233,10 @@ function Index() {
                   <span aria-hidden>⚛️</span> Subscribe · Atom
                 </a>
               </div>
-
             </div>
           </div>
           <UpdatesGrid />
         </section>
-
 
         {/* PHILOSOPHY */}
         <section
@@ -1161,9 +1257,8 @@ function Index() {
             <div className="space-y-5 text-white/70 leading-relaxed">
               <p>
                 Technology shouldn't fragment our attention — it should align it. Every Resonance
-                app is built on{" "}
-                <span className="text-white">Harmonic UX</span>: tools that respond to human
-                intuition the way a tuned instrument responds to breath.
+                app is built on <span className="text-white">Harmonic UX</span>: tools that respond
+                to human intuition the way a tuned instrument responds to breath.
               </p>
               <p className="font-serif italic text-white/85 text-lg">
                 "When the tool disappears, only the intention remains."
@@ -1216,7 +1311,9 @@ function Index() {
               <details key={item.q} className="group p-6">
                 <summary className="flex items-center justify-between cursor-pointer list-none font-semibold text-base">
                   <span>{item.q}</span>
-                  <span className="ml-4 text-white/65 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+                  <span className="ml-4 text-white/65 group-open:rotate-45 transition-transform text-xl leading-none">
+                    +
+                  </span>
                 </summary>
                 <p className="mt-3 text-sm text-white/65 leading-relaxed">{item.a}</p>
               </details>
@@ -1261,7 +1358,11 @@ function Index() {
                 disabled={joinStatus === "loading" || joinStatus === "ok"}
                 className="px-8 py-3 bg-gradient-brand text-white rounded-full font-bold text-sm shadow-[0_0_30px_-5px_hsl(295_90%_60%/0.8)] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                {joinStatus === "loading" ? "Subscribing…" : joinStatus === "ok" ? "Subscribed ✓" : "Subscribe"}
+                {joinStatus === "loading"
+                  ? "Subscribing…"
+                  : joinStatus === "ok"
+                    ? "Subscribed ✓"
+                    : "Subscribe"}
               </button>
             </form>
             <p className="mt-4 text-[11px] text-white/65 max-w-md mx-auto">
@@ -1282,7 +1383,6 @@ function Index() {
                 {joinMsg}
               </p>
             )}
-
           </div>
         </section>
       </main>
@@ -1302,39 +1402,81 @@ function Index() {
             </div>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-[10px] font-mono uppercase tracking-widest text-white/70 justify-center md:justify-end">
-            <a href="/#apps" className="hover:text-white transition-colors">Apps</a>
-            <Link to="/pricing" className="hover:text-white transition-colors">Free promotion</Link>
-            <a href="/#updates" className="hover:text-white transition-colors">Updates</a>
-            <a href="/#bundles" className="hover:text-white transition-colors">Bundles</a>
-            <a href="/#roadmap" className="hover:text-white transition-colors">Roadmap</a>
-            <Link to="/governance" className="hover:text-white transition-colors">Governance</Link>
-            <Link to="/privacy" className="hover:text-white transition-colors">Privacy &amp; POPIA</Link>
-            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <Link to="/refunds" className="hover:text-white transition-colors">Refunds</Link>
-            <Link to="/changelog" className="hover:text-white transition-colors">Changelog</Link>
-            <a href="mailto:hello@reson8.life" className="hover:text-white transition-colors">Support</a>
-            <a href="mailto:hello@reson8.life" className="hover:text-white transition-colors">Contact</a>
+            <a href="/#apps" className="hover:text-white transition-colors">
+              Apps
+            </a>
+            <Link to="/pricing" className="hover:text-white transition-colors">
+              Free promotion
+            </Link>
+            <a href="/#updates" className="hover:text-white transition-colors">
+              Updates
+            </a>
+            <a href="/#bundles" className="hover:text-white transition-colors">
+              Bundles
+            </a>
+            <a href="/#roadmap" className="hover:text-white transition-colors">
+              Roadmap
+            </a>
+            <Link to="/governance" className="hover:text-white transition-colors">
+              Governance
+            </Link>
+            <Link to="/privacy" className="hover:text-white transition-colors">
+              Privacy &amp; POPIA
+            </Link>
+            <Link to="/terms" className="hover:text-white transition-colors">
+              Terms
+            </Link>
+            <Link to="/refunds" className="hover:text-white transition-colors">
+              Refunds
+            </Link>
+            <Link to="/changelog" className="hover:text-white transition-colors">
+              Changelog
+            </Link>
+            <a href="mailto:hello@reson8.life" className="hover:text-white transition-colors">
+              Support
+            </a>
+            <a href="mailto:hello@reson8.life" className="hover:text-white transition-colors">
+              Contact
+            </a>
 
-            <a href="https://www.resonance-podcast.com/episodes" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a
+              href="https://www.resonance-podcast.com/episodes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
               Podcast
             </a>
-            <a href="https://epublisher.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              ePublisher
+            <a
+              href="https://epublisher.reson8.life"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Resonance Publish
             </a>
-            <a href="https://creative.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              Studio
+            <a
+              href="https://creative.reson8.life"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Resonance Creator Studio
             </a>
-            <a href="https://sync.reson8.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              SyncVision
+            <a
+              href="https://sync.reson8.life"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Resonance Media Sync
             </a>
           </div>
-
         </div>
       </footer>
     </div>
   );
 }
-
 
 type UpdateTone = "live" | "updating" | "new" | "pilot";
 type UpdateLink = { label: string; href: string };
@@ -1354,14 +1496,85 @@ type UpdateItem = {
 // Source of truth for editing lives in public/content/updates.json — no code
 // changes required to add / edit / reorder cards.
 const FALLBACK_UPDATES: UpdateItem[] = [
-  { app: "Reson8 Hub", status: "Free Promotion", tone: "pilot", change: "New billing and checkout are paused while the ecosystem measures real usage and provider cost for sustainable future pricing.", date: "Sep 2026", href: "/pricing", cta: "Promotion details" },
-  { app: "Resonance ePublisher", status: "Free Promotion", tone: "pilot", change: "Full ePublisher access is included during the promotion while generation and publishing costs are measured.", date: "Sep 2026", href: "https://epublisher.reson8.life", cta: "Open free" },
-  { app: "Creative Studio", status: "Free Promotion", tone: "pilot", change: "Creative Studio generation access is temporarily free while image and media provider costs are measured.", date: "Sep 2026", href: "https://creative.reson8.life", cta: "Open free" },
-  { app: "Sync Vision", status: "Free Promotion", tone: "pilot", change: "Storyboard, lipsync, rendering, and export access are included while video-provider costs are measured.", date: "Sep 2026", href: "https://sync.reson8.life", cta: "Open free" },
-  { app: "YouTube Optimizer", status: "Free Promotion", tone: "pilot", change: "Audits, thumbnail generation, and optimizer tools are temporarily free while usage and AI costs are measured.", date: "Sep 2026", href: "https://youtube.reson8.life", cta: "Open free" },
-  { app: "Career Compass", status: "Free Pilot", tone: "pilot", change: "Free pilot open to schools and learners while delivery, support, and report-generation costs are measured.", date: "Feb 2026", href: "https://www.career-compass.org/#how", cta: "Join pilot" },
-  { app: "The Resonance Podcast", status: "Live", tone: "live", change: "New season live — free episodes, media kits, and shop. Never a subscription.", date: "Jun 2026", href: "https://www.resonance-podcast.com/episodes", cta: "Listen" },
-  { app: "Reson8 Governance", status: "New", tone: "new", change: "Resonance Constitutional Governance Framework v1.0 published — how we build, price, and evolve every app.", date: "May 2026", href: "/governance", cta: "Read RCGF" },
+  {
+    app: "Reson8 Hub",
+    status: "Free Promotion",
+    tone: "pilot",
+    change:
+      "New billing and checkout are paused while the ecosystem measures real usage and provider cost for sustainable future pricing.",
+    date: "Sep 2026",
+    href: "/pricing",
+    cta: "Promotion details",
+  },
+  {
+    app: "Resonance Publish",
+    status: "Free Promotion",
+    tone: "pilot",
+    change:
+      "Full Resonance Publish access is included during the promotion while generation and publishing costs are measured.",
+    date: "Sep 2026",
+    href: "https://epublisher.reson8.life",
+    cta: "Open free",
+  },
+  {
+    app: "Resonance Creator Studio",
+    status: "Free Promotion",
+    tone: "pilot",
+    change:
+      "Resonance Creator Studio generation access is temporarily free while image and media provider costs are measured.",
+    date: "Sep 2026",
+    href: "https://creative.reson8.life",
+    cta: "Open free",
+  },
+  {
+    app: "Resonance Media Sync",
+    status: "Free Promotion",
+    tone: "pilot",
+    change:
+      "Storyboard, lipsync, rendering, and export access are included while video-provider costs are measured.",
+    date: "Sep 2026",
+    href: "https://sync.reson8.life",
+    cta: "Open free",
+  },
+  {
+    app: "Resonance Creator Growth",
+    status: "Free Promotion",
+    tone: "pilot",
+    change:
+      "Audits, thumbnail generation, and optimizer tools are temporarily free while usage and AI costs are measured.",
+    date: "Sep 2026",
+    href: "https://youtube.reson8.life",
+    cta: "Open free",
+  },
+  {
+    app: "Career Compass",
+    status: "Free Pilot",
+    tone: "pilot",
+    change:
+      "Free pilot open to schools and learners while delivery, support, and report-generation costs are measured.",
+    date: "Feb 2026",
+    href: "https://www.career-compass.org/#how",
+    cta: "Join pilot",
+  },
+  {
+    app: "The Resonance Podcast",
+    status: "Live",
+    tone: "live",
+    change: "New season live — free episodes, media kits, and shop. Never a subscription.",
+    date: "Jun 2026",
+    href: "https://www.resonance-podcast.com/episodes",
+    cta: "Listen",
+  },
+  {
+    app: "Reson8 Governance",
+    status: "New",
+    tone: "new",
+    change:
+      "Resonance Constitutional Governance Framework v1.0 published — how we build, price, and evolve every app.",
+    date: "May 2026",
+    href: "/governance",
+    cta: "Read RCGF",
+  },
 ];
 
 const TONE_BADGE: Record<string, string> = {
@@ -1427,7 +1640,7 @@ function UpdatesGrid() {
     acc[u.tone] = (acc[u.tone] ?? 0) + 1;
     return acc;
   }, {});
-  const active = openIndex !== null ? visible[openIndex] ?? null : null;
+  const active = openIndex !== null ? (visible[openIndex] ?? null) : null;
 
   return (
     <>
@@ -1438,7 +1651,7 @@ function UpdatesGrid() {
       >
         {FILTERS.map((f) => {
           const isActive = filter === f.key;
-          const count = f.key === "all" ? updates.length : counts[f.key] ?? 0;
+          const count = f.key === "all" ? updates.length : (counts[f.key] ?? 0);
           return (
             <button
               key={f.key}
@@ -1466,20 +1679,43 @@ function UpdatesGrid() {
           {visible.map((u, i) => {
             const external = isExternal(u.href);
             const badgeCls = TONE_BADGE[u.tone] ?? NEUTRAL_BADGE;
-            const hasMore = Boolean((u.details && u.details.trim().length > 0) || (u.links && u.links.length > 0));
+            const hasMore = Boolean(
+              (u.details && u.details.trim().length > 0) || (u.links && u.links.length > 0),
+            );
             return (
-              <article key={`${u.app}-${i}`} className="rounded-2xl border border-white/10 bg-card/50 backdrop-blur-xl p-5 flex flex-col">
+              <article
+                key={`${u.app}-${i}`}
+                className="rounded-2xl border border-white/10 bg-card/50 backdrop-blur-xl p-5 flex flex-col"
+              >
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`text-[10px] font-mono uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border ${badgeCls}`}>{u.status}</span>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">{u.date}</span>
+                  <span
+                    className={`text-[10px] font-mono uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border ${badgeCls}`}
+                  >
+                    {u.status}
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">
+                    {u.date}
+                  </span>
                 </div>
                 <h3 className="text-sm font-bold tracking-tight mb-2">{u.app}</h3>
                 <p className="text-xs text-white/70 leading-relaxed mb-4 flex-1">{u.change}</p>
                 <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/10">
                   {external ? (
-                    <a href={u.href} target="_blank" rel="noopener noreferrer" className="text-xs font-bold uppercase tracking-widest text-white/85 hover:text-white">{u.cta} →</a>
+                    <a
+                      href={u.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold uppercase tracking-widest text-white/85 hover:text-white"
+                    >
+                      {u.cta} →
+                    </a>
                   ) : (
-                    <Link to={u.href} className="text-xs font-bold uppercase tracking-widest text-white/85 hover:text-white">{u.cta} →</Link>
+                    <Link
+                      to={u.href}
+                      className="text-xs font-bold uppercase tracking-widest text-white/85 hover:text-white"
+                    >
+                      {u.cta} →
+                    </Link>
                   )}
                   {hasMore && (
                     <button
@@ -1498,18 +1734,29 @@ function UpdatesGrid() {
         </div>
       )}
 
-      <Dialog open={active !== null} onOpenChange={(o) => { if (!o) setOpenIndex(null); }}>
+      <Dialog
+        open={active !== null}
+        onOpenChange={(o) => {
+          if (!o) setOpenIndex(null);
+        }}
+      >
         <DialogContent className="max-w-xl bg-card/95 backdrop-blur-xl border-white/10 text-white">
           {active && (
             <>
               <DialogHeader>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className={`text-[10px] font-mono uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border ${TONE_BADGE[active.tone] ?? NEUTRAL_BADGE}`}>
+                  <span
+                    className={`text-[10px] font-mono uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border ${TONE_BADGE[active.tone] ?? NEUTRAL_BADGE}`}
+                  >
                     {active.status}
                   </span>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">{active.date}</span>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">
+                    {active.date}
+                  </span>
                 </div>
-                <DialogTitle className="font-display text-2xl tracking-[-0.02em]">{active.app}</DialogTitle>
+                <DialogTitle className="font-display text-2xl tracking-[-0.02em]">
+                  {active.app}
+                </DialogTitle>
                 <DialogDescription className="text-white/70 text-sm leading-relaxed pt-1">
                   {active.change}
                 </DialogDescription>
@@ -1534,11 +1781,20 @@ function UpdatesGrid() {
                       return (
                         <li key={idx}>
                           {ext ? (
-                            <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-sm text-white/85 hover:text-white underline underline-offset-4 decoration-white/25 hover:decoration-white/60">
+                            <a
+                              href={l.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-white/85 hover:text-white underline underline-offset-4 decoration-white/25 hover:decoration-white/60"
+                            >
                               {l.label} ↗
                             </a>
                           ) : (
-                            <Link to={l.href} onClick={() => setOpenIndex(null)} className="text-sm text-white/85 hover:text-white underline underline-offset-4 decoration-white/25 hover:decoration-white/60">
+                            <Link
+                              to={l.href}
+                              onClick={() => setOpenIndex(null)}
+                              className="text-sm text-white/85 hover:text-white underline underline-offset-4 decoration-white/25 hover:decoration-white/60"
+                            >
                               {l.label} →
                             </Link>
                           )}

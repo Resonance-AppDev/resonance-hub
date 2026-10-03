@@ -38,31 +38,31 @@ type BrokerHealthResponse = {
 };
 
 const COSTED_APPS = [
-  { key: "epublisher", label: "Resonance ePublisher" },
-  { key: "creative_studio", label: "Resonance Creative Studio" },
-  { key: "sync_vision", label: "Resonance Sync Vision" },
-  { key: "youtube_optimizer", label: "YouTube Optimizer" },
+  { key: "epublisher", label: "Resonance Publish" },
+  { key: "creative_studio", label: "Resonance Creator Studio" },
+  { key: "sync_vision", label: "Resonance Media Sync" },
+  { key: "youtube_optimizer", label: "Resonance Creator Growth" },
 ] as const;
 
 const EXTERNAL_COST_SOURCES = [
   {
     key: "epublisher",
-    label: "Resonance ePublisher",
+    label: "Resonance Publish",
     evidence: "api_usage_logs.cost_estimate",
-    authority: "ePublisher backend",
+    authority: "Resonance Publish backend",
     status: "source_identified_adapter_pending",
   },
   {
     key: "sync_vision",
-    label: "Resonance Sync Vision",
+    label: "Resonance Media Sync",
     evidence:
       "generation_metrics.estimated_cost_usd; render_jobs/generation_jobs.estimated_cost_gbp",
-    authority: "Sync Vision backend",
+    authority: "Resonance Media Sync backend",
     status: "source_identified_adapter_pending",
   },
   {
     key: "creative_studio",
-    label: "Resonance Creative Studio",
+    label: "Resonance Creator Studio",
     evidence:
       "RONS v0.12 cost ledger + authenticated feature_usage promotion_costing via the source-authoritative spoke broker",
     authority: "RONS sovereign backend",
@@ -70,7 +70,7 @@ const EXTERNAL_COST_SOURCES = [
   },
   {
     key: "youtube_optimizer",
-    label: "YouTube Optimizer",
+    label: "Resonance Creator Growth",
     evidence:
       "RONS v0.12 /v1/ai/chat usage receipts + server-proxied feature_usage promotion_costing",
     authority: "RONS sovereign backend",

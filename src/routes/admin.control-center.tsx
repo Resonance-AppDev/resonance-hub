@@ -556,7 +556,7 @@ function ControlCenter() {
               <textarea
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                placeholder="e.g. Audit Sync Vision rendering flow and recommend the highest-impact local optimization"
+                placeholder="e.g. Audit Resonance Media Sync rendering flow and recommend the highest-impact local optimization"
                 className="mt-4 min-h-28 w-full rounded-lg border border-border bg-background p-3 text-sm"
               />
               <div className="mt-3 flex flex-wrap items-center gap-3">

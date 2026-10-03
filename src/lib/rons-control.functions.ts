@@ -105,7 +105,7 @@ export const getRonsControlState = createServerFn({ method: "GET" })
   .middleware([requireRonsAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.userId);
-    let localHealth = { ok: false, model: "", error: "" };
+    let localHealth: { ok: boolean; model: string; error: string };
     try {
       // Intentional loopback-only health probe; no traffic leaves this host.
       // nosemgrep: typescript.react.security.react-insecure-request.react-insecure-request
@@ -148,8 +148,8 @@ export const getRonsControlState = createServerFn({ method: "GET" })
       promotionSites: [
         { name: "Resonance Hub", url: "https://www.reson8.life", email: "" },
         { name: "Resonance Online", url: "https://epublisher.reson8.life", email: "" },
-        { name: "Creative Studio", url: "https://creative.reson8.life", email: "" },
-        { name: "Sync Vision", url: "https://sync.reson8.life", email: "" },
+        { name: "Resonance Creator Studio", url: "https://creative.reson8.life", email: "" },
+        { name: "Resonance Media Sync", url: "https://sync.reson8.life", email: "" },
         {
           name: "Resonance Naturals",
           url: "https://www.resonance-products.com/products",

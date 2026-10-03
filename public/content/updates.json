@@ -20,17 +20,17 @@
     ]
   },
   {
-    "app": "Resonance ePublisher",
+    "app": "Resonance Publish",
     "status": "Free Promotion",
     "tone": "pilot",
-    "change": "Full ePublisher access is free during the promotion while generation, publishing, export, and support costs are measured.",
+    "change": "Full Resonance Publish access is free during the promotion while generation, publishing, export, and support costs are measured.",
     "date": "Sep 2026",
     "href": "https://epublisher.reson8.life",
     "cta": "Open free",
-    "details": "ePublisher commercial feature gates are paused during the promotion. Sign-in can still be required so projects persist and generation, export, storage, and support usage can be measured for sustainable future pricing.",
+    "details": "Resonance Publish commercial feature gates are paused during the promotion. Sign-in can still be required so projects persist and generation, export, storage, and support usage can be measured for sustainable future pricing.",
     "links": [
       {
-        "label": "Open ePublisher",
+        "label": "Open Resonance Publish",
         "href": "https://epublisher.reson8.life"
       },
       {
@@ -40,17 +40,17 @@
     ]
   },
   {
-    "app": "Creative Studio",
+    "app": "Resonance Creator Studio",
     "status": "Free Promotion",
     "tone": "pilot",
-    "change": "Creative Studio generation access is temporarily free while image, media, storage, and provider costs are measured.",
+    "change": "Resonance Creator Studio generation access is temporarily free while image, media, storage, and provider costs are measured.",
     "date": "Sep 2026",
     "href": "https://creative.reson8.life",
     "cta": "Open free",
-    "details": "Creative Studio paid-generation gates are paused during the promotion. Operational telemetry remains active so real image, media, infrastructure, and support cost can inform a later pricing model.",
+    "details": "Resonance Creator Studio paid-generation gates are paused during the promotion. Operational telemetry remains active so real image, media, infrastructure, and support cost can inform a later pricing model.",
     "links": [
       {
-        "label": "Open Creative Studio",
+        "label": "Open Resonance Creator Studio",
         "href": "https://creative.reson8.life"
       },
       {
@@ -60,17 +60,17 @@
     ]
   },
   {
-    "app": "Sync Vision",
+    "app": "Resonance Media Sync",
     "status": "Free Promotion",
     "tone": "pilot",
-    "change": "Sync Vision storyboard, lipsync, rendering, and export access is included during the promotion while video-provider costs are measured.",
+    "change": "Resonance Media Sync storyboard, lipsync, rendering, and export access is included during the promotion while video-provider costs are measured.",
     "date": "Sep 2026",
     "href": "https://sync.reson8.life",
     "cta": "Open free",
-    "details": "Sync Vision commercial gates are paused during the promotion. Storyboard, lipsync, rendering, export, storage, and provider usage continue to be measured so future pricing can reflect actual cost.",
+    "details": "Resonance Media Sync commercial gates are paused during the promotion. Storyboard, lipsync, rendering, export, storage, and provider usage continue to be measured so future pricing can reflect actual cost.",
     "links": [
       {
-        "label": "Open Sync Vision",
+        "label": "Open Resonance Media Sync",
         "href": "https://sync.reson8.life"
       },
       {
@@ -80,17 +80,17 @@
     ]
   },
   {
-    "app": "YouTube Optimizer",
+    "app": "Resonance Creator Growth",
     "status": "Free Promotion",
     "tone": "pilot",
-    "change": "YouTube Optimizer audits, thumbnail generation, and growth tools are temporarily free while AI usage and operating costs are measured.",
+    "change": "Resonance Creator Growth audits, thumbnail generation, and growth tools are temporarily free while AI usage and operating costs are measured.",
     "date": "Sep 2026",
     "href": "https://youtube.reson8.life",
     "cta": "Open free",
-    "details": "YouTube Optimizer commercial gates are paused during the promotion. Audit, thumbnail, AI, and infrastructure usage remain measurable so a sustainable future pricing model can be based on real cost.",
+    "details": "Resonance Creator Growth commercial gates are paused during the promotion. Audit, thumbnail, AI, and infrastructure usage remain measurable so a sustainable future pricing model can be based on real cost.",
     "links": [
       {
-        "label": "Open YouTube Optimizer",
+        "label": "Open Resonance Creator Growth",
         "href": "https://youtube.reson8.life"
       },
       {
