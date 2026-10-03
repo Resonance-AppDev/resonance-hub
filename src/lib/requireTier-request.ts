@@ -116,17 +116,17 @@ export async function requireTierFromRequest(args: {
   // 1. Extract bearer token.
   const authHeader = request.headers.get("authorization") ?? "";
   if (!authHeader.toLowerCase().startsWith("bearer ")) {
-    throw new Response(
-      JSON.stringify({ error: "unauthorized", message: "Sign in required" }),
-      { status: 401, headers },
-    );
+    throw new Response(JSON.stringify({ error: "unauthorized", message: "Sign in required" }), {
+      status: 401,
+      headers,
+    });
   }
   const accessToken = authHeader.slice(7).trim();
   if (!accessToken) {
-    throw new Response(
-      JSON.stringify({ error: "unauthorized", message: "Sign in required" }),
-      { status: 401, headers },
-    );
+    throw new Response(JSON.stringify({ error: "unauthorized", message: "Sign in required" }), {
+      status: 401,
+      headers,
+    });
   }
 
   // 2. Validate the bearer token through the selected backend provider.
@@ -159,10 +159,10 @@ export async function requireTierFromRequest(args: {
       rows = await fetchSubscriptionRows(accessToken, userId, [app, "all_access"]);
     } catch {
       // Fail closed on provider/query errors.
-      throw new Response(
-        JSON.stringify(upgradeBody(app, required, "free", "inactive", returnTo)),
-        { status: 402, headers },
-      );
+      throw new Response(JSON.stringify(upgradeBody(app, required, "free", "inactive", returnTo)), {
+        status: 402,
+        headers,
+      });
     }
 
     const active = rows.filter((r) => r.status === "active");
@@ -213,14 +213,13 @@ export async function requireTierFromRequest(args: {
 
   // 5. Evaluate.
   const allowed =
-    ent.status === "active" &&
-    (ent.source === "all_access" || hasAtLeast(ent.tier, required));
+    ent.status === "active" && (ent.source === "all_access" || hasAtLeast(ent.tier, required));
 
   if (!allowed) {
-    throw new Response(
-      JSON.stringify(upgradeBody(app, required, ent.tier, ent.status, returnTo)),
-      { status: 402, headers },
-    );
+    throw new Response(JSON.stringify(upgradeBody(app, required, ent.tier, ent.status, returnTo)), {
+      status: 402,
+      headers,
+    });
   }
 
   return {
