@@ -1,0 +1,22 @@
+{
+  "target": "https://reson8.life",
+  "checkedAt": "2026-10-04T06:08:21.797Z",
+  "sourceReference": "ff745cf4706ec21cf9f56cb3db7d5fcaf445d178",
+  "deployedCommitVerified": false,
+  "checks": [
+    {
+      "path": "/",
+      "passed": true
+    },
+    {
+      "path": "/content/updates.json",
+      "passed": true
+    },
+    {
+      "path": "/api/public/app-status/health",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Public HTTP acceptance only; not visual, billing, database, or version certification."
+}
