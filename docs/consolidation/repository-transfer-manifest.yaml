@@ -1,0 +1,70 @@
+schema_version: 1
+prepared_at: 2026-10-04
+status: prepared_no_transfers_executed
+target_owner: Resonance-AppDev
+migration_type: github_native_repository_transfer
+
+repositories:
+  - source: Resonance-AppDev/resonance-hub
+    target: Resonance-AppDev/resonance-hub
+    role: product_runtime_hub
+    action: retain
+    verified: true
+    default_branch: main
+    prepared_main_sha: aa2adacb1dfef869f8e011528ad5ed9bfeabb38a
+    notes:
+      - Admin/push access verified through active Resonance identity.
+      - GitHub branch-level protection on main was not enabled at preparation time.
+
+  - source: DataNest-Supository/DataNest
+    target: Resonance-AppDev/DataNest
+    role: governance_registry_certification_control_plane
+    action: transfer_after_access_restoration
+    verified: partially_via_existing_refs
+    last_known_default_branch_sha: afd2ce44e9150eceb0b6b254bec58aa4476e81d5
+    open_governance_items:
+      - pr: 469
+        last_known_head_sha: c581e0393aad6b3825e5c86eca749eacbc88669e
+        disposition: verify_live_before_transfer
+    pages_custom_domain: inventory_required
+    secrets_environments: inventory_required_without_secret_values
+    branch_rulesets: inventory_required
+
+  - source: DataNest-Supository/Mirror-DataNest
+    target: Resonance-AppDev/Mirror-DataNest
+    role: rd_test_mode_visual_functional_validation
+    action: transfer_first_as_rehearsal
+    verified: known_project_repository_not_live_api_verified
+    pages_custom_domain: inventory_required
+    secrets_environments: inventory_required_without_secret_values
+    branch_rulesets: inventory_required
+
+  - source: DataNest-Supository/*
+    target: Resonance-AppDev/*
+    role: source_inventory_pending
+    action: inventory_then_decide_individually
+    verified: false
+    blocker: DataNest-Supository account/API access suspended
+
+gates:
+  - restore_source_admin_access
+  - complete_source_repository_inventory
+  - capture_refs_tags_releases_prs_issues_and_rules
+  - verify_target_name_availability
+  - map_pages_and_custom_domains
+  - map_actions_environments_integrations_without_secret_values
+  - verify_backup_evidence
+  - transfer_mirror_first
+  - validate_mirror_post_transfer
+  - reconcile_open_datanest_governance_items
+  - transfer_datanest
+  - rebind_cross_repository_references
+  - enforce_protected_main_governance
+  - run_end_to_end_acceptance
+
+prohibitions:
+  - no_source_repo_deletion_before_validation
+  - no_recreation_at_old_source_paths_during_redirect_validation
+  - no_force_push_or_history_rewrite
+  - no_monorepo_merge_without_separate_explicit_governance_decision
+  - no_bypass_via_alternate_identity
