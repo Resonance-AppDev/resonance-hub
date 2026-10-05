@@ -127,7 +127,7 @@
     "globals": "15.15.0",
     "prettier": "3.8.3",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.70.0",
+    "typescript-eslint": "8.70.1",
     "vite": "7.3.6"
   },
   "overrides": {
