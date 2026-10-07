@@ -1,0 +1,8 @@
+{
+  "schema": "resonance-human-source-approval-guidance/v2",
+  "status": "pending",
+  "note": "This template is deliberately not an accepted approval. Use Approve-SovereignCandidate.ps1 only after separate human review with an enrolled Ed25519 private key. It creates the canonical signed envelope required by the receive hook.",
+  "requiredDecisionScope": "canonical-source-promotion-only",
+  "productionDeploymentAuthorized": false,
+  "dnsChangeAuthorized": false
+}

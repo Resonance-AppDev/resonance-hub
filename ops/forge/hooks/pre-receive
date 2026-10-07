@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+# Source template only. Initialize installs a wrapper with absolute Node/engine paths.
+repo=$(git rev-parse --absolute-git-dir)
+exec node "$repo/governance/forge-control.mjs" receive

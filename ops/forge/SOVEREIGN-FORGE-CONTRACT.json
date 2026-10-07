@@ -1,0 +1,42 @@
+{
+  "schema": "resonance-sovereign-forge/v2",
+  "serviceId": "RSN-SVC-FORGE-01",
+  "ownership": "self-owned",
+  "externalForgeDependency": false,
+  "authority": {
+    "selection": "explicit-existing-local-bare-repository",
+    "currentCheckpointPath": "C:\\Resonance AppDev-DataNest_05102026\\LOCAL-GIT\\DataNest.git",
+    "currentCheckpointMain": "0794ffad8e3a1cc8277f69ee3bc53a3770ce9252",
+    "canonicalBranch": "main",
+    "noImplicitBootstrap": true,
+    "humanApprovalRequired": true,
+    "approvalAuthentication": "Ed25519 signature verified against separately enrolled server-owned public keys",
+    "approvalBinding": ["repositoryId", "oldMain", "candidate", "candidateTree", "sourceValidationReceipt", "reviewer", "expiry", "source-only scope"],
+    "promotionShape": "one approval-only commit directly on the signed candidate",
+    "forcePushMainAllowed": false,
+    "deleteMainAllowed": false,
+    "tagsPublished": false
+  },
+  "mirror": {
+    "selection": "explicit-existing-local-bare-repository",
+    "baselineRef": "refs/heads/canonical-main",
+    "baselinePolicy": "fast-forward to the bound authority current main only; deletion denied",
+    "developmentRefPrefix": "refs/heads/rnd/",
+    "developmentPolicy": "creation, force updates and deletion allowed",
+    "productionAuthority": false
+  },
+  "runtime": {"powerShellMajorMinimum": 7, "nodeMajorMinimum": 20, "requiresGit": true},
+  "transport": {"mode": "local-file-only", "networkActivation": false, "remoteAliasesAccepted": false, "dnsCutoverAuthorized": false},
+  "automation": {
+    "gate": "ops/forge/Test-SovereignForgeGate.ps1",
+    "installControls": "ops/forge/Initialize-SovereignForge.ps1",
+    "signAfterHumanReview": "ops/forge/Approve-SovereignCandidate.ps1",
+    "publish": "ops/forge/Publish-SovereignForge.ps1",
+    "syncMirror": "ops/forge/Sync-SovereignMirror.ps1",
+    "verify": "ops/forge/Verify-SovereignForge.ps1",
+    "engine": "ops/forge/forge-control.mjs",
+    "tests": "ops/forge/tests/forge-control.test.mjs"
+  },
+  "trustBoundary": "Repository writers cannot forge enrolled reviewer signatures. Administrators with write access to installed hooks, policy, Git config or refs remain trusted. Protect those files and reviewer private keys using operating-system access controls.",
+  "productionDeploymentAuthorized": false
+}
